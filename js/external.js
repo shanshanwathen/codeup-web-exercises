@@ -33,7 +33,8 @@ alert("Student can be enrolled.");
 var numberOfItems = Number(prompt("How many items are you buying?"));
 var isOfferExpired = confirm("Is the offer expired?");
 var premiumMember = confirm("Are you a premium member?");
-if((numberOfItems >= 2 || premiumMember === true) && !isOfferExpired === true){
+var offerCanApply = (numberOfItems >= 2 || premiumMember === true) && !isOfferExpired === true;
+if(offerCanApply === true){
     alert("I'll apply the offer for you.");
 }else{
     alert("I'm sorry that the product offer cannot be applied.");
