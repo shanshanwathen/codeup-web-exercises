@@ -31,7 +31,7 @@ var classIsFull = confirm("Is the class you are trying to join full?");
 var scheduleConflict = confirm("Do you have a class at 9:00am?");
 alert("You can join the class is a " + !classIsFull && !scheduleConflict + " statement.");
 
-//product offer apply or not
+//product offer apply or not 1
 var numberOfItems = Number(prompt("How many items are you buying?"));
 var isOfferExpired = confirm("Is the offer expired?");
 var premiumMember = confirm("Are you a premium member?");
@@ -41,6 +41,13 @@ if(offerCanApply === true){
 }else{
     alert("I'm sorry that the product offer cannot be applied.");
 }
+
+//product offer apply or not 2
+var numOfItems = Number(prompt("How many items are you buying?"));
+var isOfferValid = confirm("Is the offer still valid?");
+var premiumM = confirm("Are you a premium member?");
+var canUseOffer = (numOfItems >= 2 || premiumM) && isOfferValid;
+alert("You can use this offer is a " + canUseOffer + " statement.");
 
 
 
