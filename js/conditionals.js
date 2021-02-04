@@ -2,6 +2,22 @@
 
 /* ########################################################################## */
 
+
+function firstAndLast(sequence){
+    var firstItem = [], lastItem = [];
+    firstItem = firstItem.push(sequence[0]);
+    lastItem = lastItem.push(sequence[sequence.length - 1]);
+    return firstItem.concat(lastItem);
+    console.log(firstItem);
+}
+var array1 = [1, 2, 3, 4];
+var item1 = array1[0];
+var item2 = array1[array1.length - 1];
+console.log(item1, item2);
+
+
+
+
 /**
  * TODO:
  * Create a function named `analyzeColor` that accepts a string that is a color
