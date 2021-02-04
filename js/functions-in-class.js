@@ -41,7 +41,9 @@ console.log(multiplyByTwo(increment(3)));
 // Anonymous Functions
 var honkHorn = function(){
     // do some more stuff
-    return "beep beep";
+    return "anonymous beep beep";
 }
 
 console.log(honkHorn());
+
+// git branch practice < git branch -b hello-there-marco!
