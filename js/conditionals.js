@@ -1,3 +1,4 @@
+//(function (){
 "use strict";
 
 /* ########################################################################## */
@@ -109,3 +110,5 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * Can you refactor your code to use functions?
  * HINT: The way we prompt for a value could be improved
  */
+
+//})();
