@@ -1,3 +1,4 @@
+(function (){
 "use strict";
 
 /**
@@ -55,7 +56,8 @@ var random = Math.floor((Math.random() * 3) + 1);
 function isTwo(number){
     return (number === 2);
 }
-console.log(isTwo(random));;
+console.log("The random number is " + random + ".");
+console.log(isTwo(random));
 
 /**
  * TODO:
@@ -73,7 +75,7 @@ function calculateTip(totalBill, tipPercentage){
     return tip;
 }
 
-//console.log(calculateTip(49.67, 0.05));
+console.log(calculateTip(49.6, 0.05).toFixed(2));
 /**
  * TODO:
  * Use prompt and alert in combination with your calculateTip function to
@@ -102,4 +104,5 @@ alert("Ok, so you should tip $" + tip + ".");
 function applyDiscount(price,discountPercent){
     return price * (1 - discountPercent);
 }
-//console.log(applyDiscount(100, .2));
+console.log(applyDiscount(100, .2));
+})();
