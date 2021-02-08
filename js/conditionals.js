@@ -165,7 +165,8 @@
     // Generate a random number between 0 and 6
     var luckyNumber = Math.floor(Math.random() * 6);
 
-    var totalBill = Number(prompt("What's your bill total"));
+    var totalBill = Number(prompt("What's your bill total?"));
+
     alert("Your lucky number was " + luckyNumber  +  ".");
     alert("Your price before the discount was $" + totalBill + ".");
     alert("Your total bill after the discount is $" + calculateTotal(luckyNumber, totalBill) + ".");
@@ -193,14 +194,14 @@
         if(isNaN(numberEntered) === true) {
             alert("What you entered was not a number.");
         } else {
-            var EvenOrOdd = numberEntered % 2;
-            var sum = numberEntered + 100;
-            if (EvenOrOdd === 1 || EvenOrOdd === -1) {
-                alert(numberEntered + " is an odd number.");
-            } else {
+            if (numberEntered % 2 === 0) {
                 alert(numberEntered + " is an even number.");
+            } else {
+                alert(numberEntered + " is an odd number.");
             }
-            alert(numberEntered + " plus 100 is " + sum + ".");
+
+            alert(numberEntered + " plus 100 is " + (numberEntered + 100) + ".");
+
             if (numberEntered > 0) {
                 alert(numberEntered + " is a positive number.");
             } else if (numberEntered < 0) {
