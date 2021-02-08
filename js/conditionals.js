@@ -25,17 +25,25 @@
 
     function analyzeColor(colorName){
         if (colorName === "blue") {
-            return ("Blue is the color of the sky.");
+            return "Blue is the color of the sky.";
         } else if (colorName === "red") {
-            return ("Strawberries are red.");
-        } else if (colorName === "cyan") {
-            return ("I don't know anything about cyan.");
+            return "Strawberries are red.";
+        } else if (colorName === "yellow") {
+            return "Bananas are yellow.";
+        } else if (colorName === "orange") {
+            return "Oranges are orange.";
+        } else if (colorName === "green") {
+            return "Leaves are green.";
+        } else if (colorName === "indigo") {
+            return "Blueberries are indigo";
+        } else if (colorName === "violet") {
+            return "Can you tell me something about violet?";
         } else {
-            return ("Can you tell me something about " + colorName + "?");
+            return "I don't know anything about " + colorName + ".";
         }
     }
 
-    console.log(analyzeColor("red"));
+    console.log(analyzeColor("cyan"));
 
     // Don't change the next two lines!
     // These lines create two variables for you:
@@ -63,10 +71,18 @@
                 return ("Blue is the color of the sky.");
             case "red":
                 return ("Strawberries are red.");
-            case "cyan":
-                return ("I don't know anything about cyan.");
+            case "yellow":
+                return ("Bananas are yellow.");
+            case "orange":
+                return ("Oranges are orange.");
+            case "green":
+                return ("Leaves are green.");
+            case "indigo":
+                return ("Blueberries are indigo.");
+            case "violet":
+                return ("Can you tell me something about violet?");
             default:
-                return ("Can you tell me something about " + colorName + "?");
+                return ("I don't know anything about " + colorName + ".");
         }
     }
 
@@ -119,6 +135,25 @@
     }
 
     console.log(calculateTotal(5, 100));
+
+    function switchCalculateTotal(luckyNumber, totalAmount) {
+        switch (luckyNumber) {
+            case 0:
+                return totalAmount;
+            case 1:
+                return totalAmount * (1 - 0.10);
+            case 2:
+                return totalAmount * (1 - 0.25);
+            case 3:
+                return totalAmount * (1 - 0.35);
+            case 4:
+                return totalAmount * (1 - 0.50);
+            default:
+                return 0;
+        }
+    }
+
+    console.log(switchCalculateTotal(4, 100));
 
     /**
      * TODO:
