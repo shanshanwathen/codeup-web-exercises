@@ -19,8 +19,10 @@
                 continue;
             } else if (number === numberToSkip) {
                 console.log("Yikes! Skipping number: " + numberToSkip);
+                continue;
             }
             console.log("Here is an odd number: " + number);
+
         }
     }
 
