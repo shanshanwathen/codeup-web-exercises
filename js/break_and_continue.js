@@ -5,6 +5,7 @@
     function oddNumber() {
         for (var i = 1; i <= 25; i++) {
             var numberToSkip = Number(prompt("Please type in a number between 1 and 50 :)"));
+            // make sure numberToSkip is a number instead of a string
             if (numberToSkip >= 1 && numberToSkip < 50 && numberToSkip % 2 === 1) {
                 console.log("Number to skip is: " + numberToSkip);
                 break;
@@ -24,6 +25,5 @@
     }
 
     oddNumber();
-
 
 })();
