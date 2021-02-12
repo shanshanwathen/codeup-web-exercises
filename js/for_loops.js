@@ -56,6 +56,15 @@
 
     printNumber();
 
+    //4
+    for (var i = 1; i < 10; i++) {
+        var output = "";
+        for (var j =  1; j <= i; j++) {
+           output = output + i.toString();
+        }
+        console.log(output);
+    }
+
     //5
     // Create a for loop that uses console.log to create the output shown below.
     function minusFive() {
