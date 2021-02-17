@@ -50,16 +50,16 @@
         {name: 'George', amount: 320}
     ];
 
-    shoppers.forEach(getDiscount(shopper, index, shoppers) {
+    shoppers.forEach(function(shopper) {
         if (shopper.amount > 200) {
-            shoppers[index].discount = .12;
-            shoppers[index].amountAfterDiscount = shoppers[index].amount * (1 - shoppers[index].discount);
+            shopper.discount = .12;
+            shopper.amountAfterDiscount = shopper.amount * (1 - shopper.discount);
+            console.log("Hello " + shopper.name + ", your amount before the discount was " + shopper.amount + ". Your discount is 12% and your amount after discount is " + shopper.amountAfterDiscount + ".");
+        } else {
+            console.log("Hello " + shopper.name + ", your amount is " + shopper.amount + ".")
         }
-        return shoppers;
-    }, );
 
-
-    console.log(shoppers.forEach(getDiscount(180, shoppers)));
+    });
 
     /** TODO:
      * Create an array of objects that represent books and store it in a
