@@ -12,12 +12,16 @@
             }
         }
 
-        for (var number = 1; number <= 50; number++) {
-            if (number % 2 === 0) {
-                // number is even
-                // skip the even number and continue with the next iteration
-                continue;
-            } else if (number === numberToSkip) {
+        // for (var number = 1; number <= 50; number++) {
+        //     if (number === numberToSkip) {
+        //         console.log("Yikes! Skipping number: " + numberToSkip);
+        //     } else if( number % 2 === 1) {
+        //         console.log("Here is an odd number: " + number);
+        //     }
+        // }
+
+        for (var number = 1; number <= 50; number+=2) {
+            if (number === numberToSkip) {
                 console.log("Yikes! Skipping number: " + numberToSkip);
                 continue;
             }
@@ -28,21 +32,21 @@
 
     oddNumber();
 
-    var oddNumberToSkip = 0;
-    while (oddNumberToSkip < 1 || oddNumberToSkip > 50 || oddNumberToSkip % 2 === 0) {
-        oddNumberToSkip = Number(prompt("Please type in an odd number between 1 and 50 :)"));
-    }
-    console.log("Number to skip is:" + oddNumberToSkip);
-
-    var number = 1;
-    while (number < 50) {
-        if (number === oddNumberToSkip) {
-            console.log("Yikes! Skipping number: " + number);
-        } else if (number % 2 === 1) {
-            console.log("Here is an odd number:" + number);
-        }
-        number++;
-    }
+    // var oddNumberToSkip = 0;
+    // while (oddNumberToSkip < 1 || oddNumberToSkip > 50 || oddNumberToSkip % 2 === 0) {
+    //     oddNumberToSkip = Number(prompt("Please type in an odd number between 1 and 50 :)"));
+    // }
+    // console.log("Number to skip is:" + oddNumberToSkip);
+    //
+    // var number = 1;
+    // while (number < 50) {
+    //     if (number === oddNumberToSkip) {
+    //         console.log("Yikes! Skipping number: " + number);
+    //     } else if (number % 2 === 1) {
+    //         console.log("Here is an odd number:" + number);
+    //     }
+    //     number++;
+    // }
 
 
 })();
