@@ -3,25 +3,25 @@
 
     // Break and continue
     function oddNumber() {
-        // for (var i = 1; i <= 25; i++) {
-        //     var numberToSkip = Number(prompt("Please type in an odd number between 1 and 50 :)"));
-        //     // make sure numberToSkip is a number instead of a string
-        //     if (numberToSkip >= 1 && numberToSkip <= 50 && numberToSkip % 2 === 1) {
-        //         console.log("Number to skip is: " + numberToSkip);
+        // function isNumberInRange(num) {
+        //     return num >= 1 && num <= 50;
+        // }
+        // var numberToSkip = Number(prompt("Please give me an add number between 1 and 50."));
+        // while (true) {
+        //     if (numberToSkip % 2 === 1 && isNumberInRange(numberToSkip)) {
+        //         console.log("Number to skip is: " + numberToSkip)
         //         break;
         //     }
+        //     numberToSkip = Number(prompt("Please give me an add number between 1 and 50."));
         // }
 
-        function isNumberInRange(num) {
-            return num >= 1 && num <= 50;
-        }
-        var numberToSkip = Number(prompt("Please give me an add number between 1 and 50."));
-        while (true) {
-            if (numberToSkip % 2 === 1 && isNumberInRange(numberToSkip)) {
-                console.log("Number to skip is: " + numberToSkip)
+        for (var i = 1; true; i++) {
+            var numberToSkip = Number(prompt("Please type in an odd number between 1 and 50 :)"));
+            // make sure numberToSkip is a number instead of a string
+            if (numberToSkip >= 1 && numberToSkip <= 50 && numberToSkip % 2 === 1) {
+                console.log("Number to skip is: " + numberToSkip);
                 break;
             }
-            numberToSkip = Number(prompt("Please give me an add number between 1 and 50."));
         }
 
         // for (var number = 1; number <= 50; number++) {
