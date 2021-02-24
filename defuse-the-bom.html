@@ -17,9 +17,10 @@
 
         // TODO: This function needs to be called once every second
 
-        var interval = 1; // interval time in milliseconds
+
 
         function updateTimer() {
+            var interval = 1; // interval time in one second
             return setInterval(function() {
                 if (detonationTimer === 0) {
                     alert('EXTERMINATE!');
@@ -31,7 +32,7 @@
             }, interval);
         }
 
-        updateTimer();
+
 
         // TODO: When this function runs, it needs to
         // cancel the interval/timeout for updateTimer()
