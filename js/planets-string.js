@@ -25,26 +25,11 @@
      * string, and <li> tags around each planet.
      */
 
-    var newPlanetsString = "Mercury<br>Venus<br>Earth<br>Mars<br>Jupiter<br>Saturn<br>Uranus<br>Neptune";
-
+    var newPlanetsString = planetsArray.join("<br>");
     console.log(newPlanetsString);
 
-    var newPlanetsArray = newPlanetsString.split("<br>");
-    console.log(newPlanetsArray);
+    var secondPlanetsString = "<ul>" + "<li>" + planetsArray.join("</li><li>") +  "</li>" + "</ul>";
 
-    function secondPlanets() {
-        var a = "<ul>", b = "</ul>", secondPlanets = "";
-        for (var i = 0; i <newPlanetsArray.length; i++) {
-            secondPlanets = secondPlanets + "<li>" + newPlanetsArray[i] + "</li>";
-        }
-        return a + secondPlanets + b;
-    }
-
-    var secondPlanetsString = secondPlanets();
     console.log(secondPlanetsString);
-
-    // var secondPlanetsString = "<ul>" + "<li>" + newPlanetsArray.join("</li><li>") +  "</li>" + "</ul>";
-    //
-    // console.log(secondPlanetsString);
 
 })();
