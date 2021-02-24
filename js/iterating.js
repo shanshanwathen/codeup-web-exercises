@@ -15,7 +15,7 @@
      * array.
      */
 
-    console.log(names.length);
+    console.log("There are " + names.length + " names in the array.");
 
     /**
      * TODO:
