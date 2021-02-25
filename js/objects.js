@@ -56,8 +56,7 @@
 
     shoppers.forEach(function(shopper) {
         if (shopper.amount > 200) {
-            shopper.discount = .12;
-            shopper.amountAfterDiscount = shopper.amount * (1 - shopper.discount);
+            shopper.amountAfterDiscount = shopper.amount * (1 - .12);
             console.log("Hello " + shopper.name + ", your amount before the discount was " + shopper.amount + ". Your discount is 12% and your amount after discount is " + shopper.amountAfterDiscount + ".");
         } else {
             console.log("Hello " + shopper.name + ", your amount is " + shopper.amount + ".")
