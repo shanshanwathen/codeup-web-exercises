@@ -12,7 +12,10 @@
      *  > console.log(person.lastName) // "Sanchez"
      */
 
-    var person = {firstName: "Shanshan", lastName: "Su"};
+    var person = {
+        firstName: "Shanshan",
+        lastName: "Su"
+    };
 
     console.log(person.firstName);
     console.log(person.lastName);
@@ -29,8 +32,8 @@
      */
 
     person.sayHello = function () {
-        return "Hello from " + person.firstName + " " + person.lastName + "!";
-    }
+        return "Hello from " + this.firstName + " " + this.lastName + "!";
+    }  // it's better to use this instead of person because if person is changed to another word, sayHello method will still work
 
     console.log(person.sayHello());
 
@@ -56,8 +59,8 @@
 
     shoppers.forEach(function(shopper) {
         if (shopper.amount > 200) {
-            shopper.amountAfterDiscount = shopper.amount * (1 - .12);
-            console.log("Hello " + shopper.name + ", your amount before the discount was " + shopper.amount + ". Your discount is 12% and your amount after discount is " + shopper.amountAfterDiscount + ".");
+            shopper.amountAfterDiscount = (shopper.amount * (1 - .12)).toFixed(2);
+            console.log("Hello " + shopper.name + ", you were originally going to pay $" + shopper.amount + ". Your discount is 12% and you'll only need to pay $" + shopper.amountAfterDiscount + ".");
         } else {
             console.log("Hello " + shopper.name + ", your amount is " + shopper.amount + ".")
         }
@@ -157,9 +160,13 @@
     // }
 
     books.forEach(function(book, index) {
-        console.log("Book # " + (index + 1));
-        console.log("Title: " + book.title);
-        console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+        // console.log("Book # " + (index + 1));
+        // console.log("Title: " + book.title);
+        // console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+        // console.log("---");
+
+        console.log("Book # " + (index + 1) + "\nTitle: " + book.title + "\nAuthor: " + book.author.firstName + " " + book.author.lastName + "\n---");
+
     })
 
 
