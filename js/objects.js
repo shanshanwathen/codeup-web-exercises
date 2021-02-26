@@ -182,33 +182,35 @@
      */
 
     function createBook(title, author) {
-        var book = {};
-        book.title = title;
-        book.author = {};
-        book.author.firstName = author.split(" ")[0];
-        book.author.lastName = author.split(" ")[1];
-        return book;
+        return {
+            title: title,
+            author: {
+                firstName: author.split(" ")[0],
+                lastName: author.split(" ")[1]
+            }
+        };
     }
 
-    books = [];
-    books[0] = createBook("The Lord Of the Rings", "John Tolkien");
-    books[1] = createBook("To Kill a Mockingbird", "Harper Lee");
-    books[2] = createBook("Things Fall Apart", "Chinua Achebe");
-    books[3] = createBook("The Color Purple", "Alice Walker");
-    books[4] = createBook("Invisible Man", "Ralph Ellison");
-    books[5] = createBook("Pride and Prejudice", "Jane Austen");
+    books = [
+        createBook("The Lord Of the Rings", "John Tolkien"),
+        createBook("To Kill a Mockingbird", "Harper Lee"),
+        createBook("Things Fall Apart", "Chinua Achebe"),
+        createBook("The Color Purple", "Alice Walker"),
+        createBook("Invisible Man", "Ralph Ellison"),
+        createBook("Pride and Prejudice", "Jane Austen")
+    ];
 
     console.log(books);
 
-    function showBookInfo(book) {
+    function showBookInfo(book, bookNumber) {
+        console.log("Book # " + (bookNumber + 1));
         console.log("Title: " + book.title);
         console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+        console.log("---");
     }
 
     books.forEach(function(book, index) {
-        console.log("Book # " + (index + 1));
-        showBookInfo(book);
+        showBookInfo(book, index);
 });
-
 
 })();
