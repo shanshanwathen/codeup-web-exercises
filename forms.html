@@ -6,14 +6,32 @@
 </head>
 <body>
     <header><h1>Veridian Dynamics Registration</h1></header>
+    <nav></nav>
     <main>
 
 
         <form method="POST" action="https://request-inspector.glitch.me/">
 
             <label for="username">Username</label>
-            <input id="username" name = "username" type="email">
+            <input id="username" name="username" type="email" placeholder="********@gmail.com">
+            <br>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="password">
+            <br>
+            <textarea name="bio" id="biography" cols="30" rows="10" placeholder="Describe yourself"></textarea>
+            <br>
+            <section>
+                How did you hear about us?<br>
+                <input type="checkbox" name="ways_to_hear_about_us" value="billboard">Billboard<br>
+                <input type="checkbox" name="ways_to_hear_about_us" value="radio advertisement">Radio advertisement<br>
+                <input type="checkbox" name="ways_to_hear_about_us" value="internet advertisement">Internet advertisement<br>
+                <input type="checkbox" name="ways_to_hear_about_us" value="other">Other<br>
+            </section>
+
+            <button type="submit">Register</button>
         </form>
     </main>
+    <aside></aside>
+    <footer></footer>
 </body>
 </html>
