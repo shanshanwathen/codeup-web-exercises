@@ -15,19 +15,34 @@
             <label for="username">Username</label>
             <input id="username" name="username" type="email" placeholder="********@gmail.com">
             <br>
+
             <label for="password">Password</label>
             <input id="password" name="password" type="password" placeholder="password">
             <br>
+
             <textarea name="bio" id="biography" cols="30" rows="10" placeholder="Describe yourself"></textarea>
             <br>
+
             <section>
-                How did you hear about us?<br>
-                <input type="checkbox" name="ways_to_hear_about_us" value="billboard">Billboard<br>
-                <input type="checkbox" name="ways_to_hear_about_us" value="radio advertisement">Radio advertisement<br>
-                <input type="checkbox" name="ways_to_hear_about_us" value="internet advertisement">Internet advertisement<br>
-                <input type="checkbox" name="ways_to_hear_about_us" value="other">Other<br>
+                <h2>How did you hear about us?</h2>
+                <label><input type="checkbox" name="ways_to_hear_about_us" value="billboard">Billboard</label><br>
+                <label><input type="checkbox" name="ways_to_hear_about_us" value="radio advertisement">Radio advertisement</label><br>
+                <label><input type="checkbox" name="ways_to_hear_about_us" value="internet advertisement">Internet advertisement</label><br>
+                <label><input type="checkbox" name="ways_to_hear_about_us" value="other">Other</label><br>
             </section>
 
+            <section>
+                <label for="webBrowser-select">What web browser are you using?</label><br>
+                <select name="webBrowsers" id="webBrowser-select">
+                    <option value="">--Please choose an option--</option>
+                    <option value="google chrome">Google Chrome</option>
+                    <option value="firefox">Firefox</option>
+                    <option value="safari">Safari</option>
+                    <option value="opera">Opera</option>
+                    <option value="internet explorer">Internet Explorer</option>
+                    <option value="ohter">Other</option>
+                </select>
+            </section>
             <button type="submit">Register</button>
         </form>
     </main>
