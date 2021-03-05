@@ -1,6 +1,64 @@
 
+body {
+    font-family: "Noto Sans JP", sans-serif;
+    background-color: dimgray;
+    background-image: url("../img/Space-Stars-Black-Background-Gif-1920x1080-.gif");
+    /*background-repeat: no-repeat;*/
+    background-size: 100%, 100%;
+    overflow: scroll;
+}
 .fancy-header {
-    color: purple;
+    color: cornflowerblue;
     text-decoration: underline;
+
+}
+
+header>p {
+    color: lavender;
+}
+
+h1 {
     text-align: center;
+}
+
+.special {
+    font-size: 18px;
+    color: lightblue;
+}
+
+ul {
+    list-style-image: url("../img/arrow-right.jpeg");
+}
+
+/*ul>li{*/
+/*    list-style: none;*/
+/*}*/
+/*ul>li::before{*/
+/*    content: '';*/
+/*    display: inline-block;*/
+/*    height: 1em;*/
+/*    width: 1em;*/
+/*    background-image: url("../img/arrow-right.jpeg");*/
+/*    background-size: contain;*/
+/*    background-repeat: no-repeat;*/
+/*}*/
+
+ol {
+    list-style: georgian;
+}
+
+a:link {
+    color: red;
+}
+
+a:visited {
+    color: green;
+}
+
+a:hover {
+    color: chocolate;
+}
+
+a:active {
+    color: goldenrod;
 }
