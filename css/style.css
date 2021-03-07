@@ -2,10 +2,10 @@
 body {
     font-family: "Noto Sans JP", sans-serif;
     background-color: dimgray;
-    background-image: url("../img/Space-Stars-Black-Background-Gif-1920x1080-.gif");
+    background-image: url("../img/Space-Stars-Black-Background.gif");
     /*background-repeat: no-repeat;*/
     background-size: 100%, 100%;
-    overflow: scroll;
+    /*overflow: scroll;*/
 }
 .fancy-header {
     color: cornflowerblue;
@@ -45,6 +45,12 @@ ul {
 
 ol {
     list-style: georgian;
+}
+
+th, td {
+    border: 10px;
+    padding:15px;
+    text-align: center;
 }
 
 a:link {
