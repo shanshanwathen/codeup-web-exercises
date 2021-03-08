@@ -12,7 +12,7 @@ body, html {
 
 form {
     /* This form should be separated from other elements by 1em */
-    border: 1em;
+    margin: 1em;
     /* There must be 1em between the content and the border of this element */
     padding: 1em;
 }
@@ -24,6 +24,7 @@ fieldset {
     /* There must be 1em between the content and the border of this element */
     padding: 1em;
     /* It should have no border */
+    border: 0;
     /* Its background should be white */
     background-color: white;
 }
@@ -39,8 +40,7 @@ fieldset {
     /* This element must use 100% of the width */
     width: 100%;
     /* It should have a separation of .5em from elements on top of it and below it*/
-    padding-bottom: .5em;
-    padding-top: .5em;
+    margin: .5em auto;
 }
 
 .form-label {
@@ -69,11 +69,12 @@ fieldset {
     padding-bottom: 4px;
     padding-top: 4px;
     /* It should have a separation of .5em from elements on top of it and below it */
-
+    margin-bottom: .5em;
+    margin-top: .5em;
     /* You'll need to use the `calc` function to make the width of this element match the width of the button */
     /* See the example at: https://developer.mozilla.org/en-US/docs/Web/CSS/calc */
     /* HINT: Calculate based on the padding of the `.btn` class */
     /* HINT: Examples are available at: https://glitch.com/~input-button-width */
     /*width: 100%;*/
-    width: calc(100% - 2px);
+    width: calc(100% - 4px);
 }
