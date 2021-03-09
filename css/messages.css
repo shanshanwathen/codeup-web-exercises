@@ -7,21 +7,22 @@ body, html {
 }
 
 .message {
-    padding: 8px;
+    font-size: 0.85em;
+    padding: .5em;
     border: 1px solid lightgrey;
     border-radius: 5px;
-    margin: 8px;
+    margin: .5em;
 }
 
 :root {
     --bg-info: #c6d7f6;
-    --text-info: #0a3d92;
+    --text-info: #37308f;
     --bg-success: #c8ebd3;
-    --text-success: #0f6e2e;
+    --text-success: #196836;
     --bg-warning: #f4f2c3;
-    --text-warning: #9b940e;
+    --text-warning: #9f8f39;
     --bg-error: #f1cdd0;
-    --text-error: #960b17;
+    --text-error: #740a24;
 }
 
 .message-info {
