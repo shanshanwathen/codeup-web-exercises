@@ -13,22 +13,33 @@ body, html {
     margin: 8px;
 }
 
+:root {
+    --bg-info: #c6d7f6;
+    --text-info: #0a3d92;
+    --bg-success: #c8ebd3;
+    --text-success: #0f6e2e;
+    --bg-warning: #f4f2c3;
+    --text-warning: #9b940e;
+    --bg-error: #f1cdd0;
+    --text-error: #960b17;
+}
+
 .message-info {
-    color: #0a3d92;
-    background-color: #c6d7f6;
+    color: var(--text-info);
+    background-color: var(--bg-info);
 }
 
 .message-success {
-    color: #0f6e2e;
-    background-color: #c8ebd3;
+    color: var(--text-success);
+    background-color: var(--bg-success);
 }
 
 .message-warning {
-    color: #9b940e;
-    background-color: #f4f2c3;
+    color: var(--text-warning);
+    background-color: var(--bg-warning);
 }
 
 .message-error {
-    color: #960b17;
-    background-color: #f1cdd0;
+    color: var(--text-error);
+    background-color: var(--bg-error);
 }
