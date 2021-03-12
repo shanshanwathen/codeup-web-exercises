@@ -77,7 +77,7 @@ a {
 }
 .profile-image {
     position: absolute;
-    top:-1.5em;   /* 15.5em or 250px or 43% */
+    top:-1.5em;   /* without .profile-header relative position set to 15.5em or 250px or 43% will work, because it goes back to the web page as relative. When setting .profile-header relative, it cannot take percentage to move the picture since the width of parent container .profile-header is 0.*/
 }
 .profile-form {
     line-height: 80px;
@@ -137,7 +137,7 @@ a {
 /* media styling starts here */
 
 .media {
-    width: 100%;  /* no change? */
+    width: 100%;
     padding: .5em;
     border-bottom:1px solid var(--separator-color);
     background-color: var(--light-bg);
@@ -151,6 +151,6 @@ a {
 }
 
 .media-body {
-    width: calc(100% - 50px);  /* why subtract the width of the image? */
+    width: calc(100% - 50px);
     float: left;
 }
