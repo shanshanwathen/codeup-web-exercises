@@ -77,7 +77,7 @@ a {
 }
 .profile-image {
     position: absolute;
-    top: -1.5em;   /* 15em or 250px or 43% */
+    top:-1.5em;   /* 15.5em or 250px or 43% */
 }
 .profile-form {
     line-height: 80px;
