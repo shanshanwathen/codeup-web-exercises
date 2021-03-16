@@ -7,34 +7,33 @@ body {
     margin: 0;
 }
 
-.flex-boundary {
-    display: flex;
+.container {
     width: 100%;
-    padding: 0;
-    margin: 0;
     background-color: #c1c1c1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
-.flex-link-container {
-    width: 100%;
-    padding: 0;
-    margin: 0;
+.flex-left {
+    width: 33%;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3em;
+    font-weight: bolder;
+    padding: .2em 0;
     margin: 0 auto;
 }
 
-ul {
-    list-style: none;
-}
-
-ul>li {
-    padding: .5em;
+.flex-right {
+    width: 33%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 nav a {
@@ -43,21 +42,10 @@ nav a {
     font-size: 1em;
     font-weight: 700;
     text-decoration: none;
+    padding: .5em;
     display: inline-block;
 }
 
 a:hover {
     color: blue;
-}
-
-ul li:nth-of-type(4) {
-    margin-right: auto;
-}
-
-ul li:nth-of-type(5) {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.6em;
-    font-weight: bolder;
-    padding: .2em 0;
-    margin-right: 25%;
 }
