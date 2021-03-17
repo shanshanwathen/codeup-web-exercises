@@ -1,3 +1,7 @@
+/*
+make three boxes for left, center and right inside a flex container then position them. It's easier to make the center to be in the true center.
+ */
+
 * {
     box-sizing: border-box;
 }
@@ -16,9 +20,14 @@ body {
     justify-content: center;
 }
 
-.flex-left {
-    width: 33%;
+.box {
     display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.flex-left {
+    /*width: 33%;*/        /* use both width 33% without flex: 1 in .box */
     justify-content: flex-start;
 }
 
@@ -31,8 +40,7 @@ body {
 }
 
 .flex-right {
-    width: 33%;
-    display: flex;
+    /*width: 33%;*/       /* use both width 33% without flex: 1 in .box */
     justify-content: flex-end;
 }
 
@@ -42,10 +50,11 @@ nav a {
     font-size: 1em;
     font-weight: 700;
     text-decoration: none;
-    padding: .5em;
+    padding: 1em .5em;
     display: inline-block;
 }
 
 a:hover {
     color: blue;
+    background-color: aliceblue;
 }
