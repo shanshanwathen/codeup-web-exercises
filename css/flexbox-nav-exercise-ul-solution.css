@@ -18,9 +18,14 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     position: relative;
     list-style: none;
+}
+
+nav ul {
+    /*margin: 0;*/
+    padding: 0;
 }
 
 nav a {
@@ -28,7 +33,7 @@ nav a {
     color: black;
     font-weight: 900;
     text-decoration: none;
-    padding: 1.1em .5em;
+    padding: 1em .5em;
     display: inline-block;
 }
 
@@ -41,7 +46,7 @@ ul li:nth-of-type(4) {
     margin-right: auto;
 }
 
-.title {
+nav ul .title {
     font-family: 'Montserrat', sans-serif;
     font-size: 3em;
     font-weight: bolder;
@@ -50,4 +55,8 @@ ul li:nth-of-type(4) {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+p {
+    text-align: center;
 }

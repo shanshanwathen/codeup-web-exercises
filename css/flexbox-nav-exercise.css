@@ -7,7 +7,6 @@ make three boxes for left, center and right inside a flex container then positio
 }
 
 body {
-    padding: 0;
     margin: 0;
 }
 
@@ -15,7 +14,7 @@ body {
     width: 100%;
     background-color: #c1c1c1;
     display: flex;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     /*align-items: center;*/
     justify-content: center;
 }
@@ -61,6 +60,6 @@ a:hover {
 
 }
 
-div:hover {
-    /*align-self: stretch;*/
+p {
+    text-align: center;
 }

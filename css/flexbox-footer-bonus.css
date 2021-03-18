@@ -1,0 +1,76 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: grey;
+    font-size: .75em;
+}
+
+footer {
+    background-color: #131313;
+    display: flex;
+    flex-direction: column;
+}
+
+ul, p, a {
+    color: grey;
+}
+
+.container {
+    margin: 3em;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+}
+
+a:hover {
+    color: #3B94D9;
+}
+
+/* -------------------- top footer styling ---------------------- */
+
+footer > .top-footer {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+}
+
+/* ----------------- top center footer styling ------------------- */
+
+footer .top-footer .top-center {
+    margin: 0 6em;
+}
+
+/* ----------------- top right footer styling ------------------- */
+
+footer .top-footer .top-right a {
+    display: inline-block;
+    padding: 0 1em 1em 0;
+}
+
+/* ------------------ bottom footer styling -------------------- */
+
+footer > .bottom-footer {
+    background-color: #333333;
+    padding: 2em 0;
+    margin: 0;
+    display: flex;
+}
+
+footer .bottom-footer ul {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+footer .bottom-footer ul a {
+    padding: .5em;
+    text-decoration: none;
+}
+
+footer .bottom-footer ul li:nth-of-type(6) {
+    margin-left: auto;
+}
