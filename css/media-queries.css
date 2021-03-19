@@ -13,25 +13,7 @@ body {
     flex-direction: column;
 }
 
-h1 {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin-top: 10px;
-}
-
-h2 {
-    font-weight: bolder;
-    margin-bottom: 5px;
-}
-
-.sub-section {
-    font-style: italic;
-}
-
-footer {
-    /*display: flex;*/
-    margin-top: auto;
-}
+/* ------------------ top blue box styling ------------------ */
 
 .alert-info {
     width: 100%;
@@ -48,6 +30,14 @@ footer {
     text-decoration: none;
 }
 
+h1 {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* ------------------ nav styling ------------------ */
+
 nav .nav-links {
     list-style: none;
     padding: 0;
@@ -63,8 +53,48 @@ nav .nav-links li {
     background-color: #cccccc;
 }
 
+h2 {
+    margin-bottom: 5px;
+}
+
+.sub-section {
+    font-style: italic;
+}
+
+.sub-section h2 {
+    font-size: 1.25em;
+}
+
 .header-img img {
     width: 100%;
+}
+
+/* ------------------ footer styling ------------------ */
+
+footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+}
+
+hr {
+    width: 100%;
+    height: 1px;
+    background-color: #cccccc;
+    border: none;
+    margin: 0 auto;
+}
+
+footer p {
+    margin: 8px 0;
+}
+
+footer #social-media-links a {
+    color: black;
+    padding: 0 5px;
 }
 
 /* Large devices (desktops, 768px and up) */
@@ -80,6 +110,7 @@ nav .nav-links li {
 
     h1 {
         position: absolute;
+        top: .4em;
         font-size: 3em;
         text-align: left;
     }
@@ -91,7 +122,6 @@ nav .nav-links li {
     nav .nav-links {
         flex-direction: row;
         justify-content: flex-end;
-        align-items: flex-end;
         margin: 2em 0;
     }
 
@@ -101,20 +131,26 @@ nav .nav-links li {
         text-align: end;
     }
 
-    section {
-        width: calc(50% - 20px);
-    }
     .main {
+        width: calc(60% - 20px);
         float: left;
         margin-right: 2em;
     }
 
     .sub-section {
+        width: calc(40% - 20px);
         float: left;
     }
 
     footer {
+        display: block;
         position: fixed;
         bottom: 0;
+    }
+
+    footer #social-media-links {
+        position: absolute;
+        bottom: .5em;
+        right: 1em;
     }
 }
