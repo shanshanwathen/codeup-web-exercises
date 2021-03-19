@@ -1,0 +1,120 @@
+* {
+    box-sizing: border-box;
+}
+
+/* default: Small devices (phones and pocket devices) */
+
+body {
+    width: calc(100% - 20px);
+    height: 100vh;
+    margin: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 10px;
+}
+
+h2 {
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+
+.sub-section {
+    font-style: italic;
+}
+
+footer {
+    /*display: flex;*/
+    margin-top: auto;
+}
+
+.alert-info {
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    text-align: center;
+    padding: 10px 0;
+    border: 2px solid #cccccc;
+    background-color: #ccffff;
+}
+
+.alert-info a {
+    color: black;
+    text-decoration: none;
+}
+
+nav .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+nav .nav-links li {
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: #cccccc;
+}
+
+.header-img img {
+    width: 100%;
+}
+
+/* Large devices (desktops, 768px and up) */
+
+@media screen and (min-width:768px) {
+    body {
+        display: block;
+    }
+
+    .hidden-on-desktop {
+        display: none;
+    }
+
+    h1 {
+        position: absolute;
+        font-size: 3em;
+        text-align: left;
+    }
+
+    h2 {
+        margin: 2em 0;
+    }
+
+    nav .nav-links {
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin: 2em 0;
+    }
+
+    nav .nav-links li {
+        margin-top: 15px;
+        background-color: white;
+        text-align: end;
+    }
+
+    section {
+        width: calc(50% - 20px);
+    }
+    .main {
+        float: left;
+        margin-right: 2em;
+    }
+
+    .sub-section {
+        float: left;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+    }
+}
