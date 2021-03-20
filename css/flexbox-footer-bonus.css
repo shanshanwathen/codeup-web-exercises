@@ -18,8 +18,12 @@ ul, p, a {
     color: grey;
 }
 
+.fa {
+    font-size: 1.5em;
+}
+
 .container {
-    margin: 3em;
+    margin: 5% 5% 2em 5%;
     color: white;
     font-family: "Montserrat", sans-serif;
 }
@@ -32,14 +36,24 @@ a:hover {
 
 footer > .top-footer {
     display: flex;
-    flex: 1;
+    /*flex: 1 1 auto;*/
     justify-content: space-between;
 }
 
 /* ----------------- top center footer styling ------------------- */
 
+footer .top-footer .top-left {
+    width: 33%;
+
+}
+
 footer .top-footer .top-center {
-    margin: 0 6em;
+    width: 33%;
+    padding-right: 7%;
+}
+
+footer .top-footer .top-right {
+    width: 33%;
 }
 
 /* ----------------- top right footer styling ------------------- */
@@ -47,6 +61,27 @@ footer .top-footer .top-center {
 footer .top-footer .top-right a {
     display: inline-block;
     padding: 0 1em 1em 0;
+}
+
+footer .top-footer .top-right #email {
+    width: 75%;
+    min-width: 20em;
+    height: 3.6em;
+    border-radius: 1.8em;
+    padding: .3em 1em;
+    margin: .8em 0;
+    font-size: 1em;
+    color: #cccccc;
+    background-color: black;
+}
+
+footer .top-footer .top-right button {
+    width: 8em;
+    height: 3.6em;
+    border: 0;
+    border-radius: 1.8em;
+    color: white;
+    background-color: #949495;
 }
 
 /* ------------------ bottom footer styling -------------------- */
@@ -67,7 +102,7 @@ footer .bottom-footer ul {
 }
 
 footer .bottom-footer ul a {
-    padding: .5em;
+    padding: 1em;
     text-decoration: none;
 }
 
