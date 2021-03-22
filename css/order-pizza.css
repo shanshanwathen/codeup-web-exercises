@@ -1,4 +1,4 @@
-/* -------------- navbar styling -------------- */
+/* -------------- top navbar styling -------------- */
 
 nav #signup a {
     color: rgba(0,0,0,.5);
@@ -8,6 +8,8 @@ nav #signup a {
     color: rgba(0,0,0,.5);
     border-color: rgba(0,0,0,.5);
 }
+
+/* -------------- pizza picture styling -------------- */
 
 .lead {
     font-size: 3rem;
@@ -24,4 +26,39 @@ p {
 
 .container #pizza-img {
     background-image: url("../img/pizza.png");
+}
+
+/* -------------- middle navbar styling -------------- */
+
+.badge-light {
+    color: white;
+    background-color: #6e757d;
+}
+
+.badge {
+    width: 1.25rem;
+    border-radius: 1rem;
+}
+
+/* -------------- card styling -------------- */
+
+.card-body {
+    padding: 0;
+}
+
+.card-footer {
+    width: 100%;
+    text-align: end;
+    padding: .75rem 1rem;
+}
+
+.child-cards {
+    width: calc(100% - 2rem);
+    margin: 1rem auto;
+}
+
+/* -------------- middle card styling -------------- */
+
+form > .child-cards > .list-group {
+    width: 100%;
 }
