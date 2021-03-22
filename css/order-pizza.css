@@ -62,3 +62,11 @@ p {
 form > .child-cards > .list-group {
     width: 100%;
 }
+
+.list-group-item {
+    padding: .75rem 1rem .25rem 1rem;
+}
+
+.form-group {
+    margin-bottom: .5rem;
+}
