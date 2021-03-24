@@ -88,7 +88,6 @@ hr {
     background-image: -webkit-gradient( linear, left bottom, right bottom, color-stop(0.01, white), color-stop(0.5, #cccccc), color-stop(1, white) );
     border: none;
     margin: 0 auto;
-
 }
 
 footer p {
@@ -146,15 +145,21 @@ footer #social-media-links a {
     }
 
     footer {
-        display: block;
+        display: flex;
         padding-top: 10%;
-        position: fixed;
-        bottom: 0;
     }
 
     footer #social-media-links {
-        position: absolute;
-        bottom: .5em;
-        right: 1em;
+        display: flex;
+        flex-direction: row;
+
+    }
+
+    footer #social-media-links p {
+        display: inline-block;
+    }
+
+    footer #social-media-links div {
+        margin: 8px 0;
     }
 }
