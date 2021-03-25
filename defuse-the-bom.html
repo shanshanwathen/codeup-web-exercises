@@ -16,28 +16,26 @@
         var detonationTimer = 5;
 
         // TODO: This function needs to be called once every second
-
-
-
         function updateTimer() {
-            var interval = 1; // interval time in one second
-            return setInterval(function() {
-                if (detonationTimer === 0) {
-                    alert('EXTERMINATE!');
-                    document.body.innerHTML = '';
-                } else if (detonationTimer > 0) {
-                    document.getElementById('timer').innerHTML = detonationTimer;
-                }
-                detonationTimer--;
-            }, interval);
+            if (detonationTimer == 0) {
+                alert('EXTERMINATE!');
+                document.body.innerHTML = '';
+            } else if (detonationTimer > 0) {
+                document.getElementById('timer').innerHTML = detonationTimer;
+            }
+
+            detonationTimer--;
+
         }
 
+        var interval = 1000; // interval time in one second
+        var intervalID = setInterval(updateTimer, interval);
 
 
         // TODO: When this function runs, it needs to
         // cancel the interval/timeout for updateTimer()
         function defuseTheBOM() {
-            return clearTimeout(updateTimer());
+            clearInterval(intervalID);
         }
 
         // Don't modify anything below this line!
