@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Online Store</title>
+</head>
+<body>
+
+<h1>My Tool Store</h1>
+
+<table id="products">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Categories</th>
+    </tr>
+    </thead>
+    <tbody id="insertProducts"></tbody>
+</table>
+
+<button id="refresh">Refresh</button>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg==" crossorigin="anonymous"></script>
+
+
+<script>
+    (function() {
+        "use strict";
+        // TODO: Create an AJAX GET request for the file under data/inventory.json
+
+        // TODO: Take the data from inventory.json and append it to the products table
+        //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+        //             its contents and fields
+        //       HINT: You will want to target #insertProducts for your new HTML elements
+
+        function addDataToTable() {
+            var tbodyRequest = $.ajax("data/inventory.json");
+            tbodyRequest.done(function (data) {
+                data.forEach(function (tool) {
+                    var contents = "";
+                    contents += "<tr><td>" + tool.title + "</td>";
+                    contents += "<td>" + tool.quantity + "</td>";
+                    contents += "<td>" + tool.price + "</td>";
+                    contents += "<td>" + tool.categories + "</td></tr>";
+                    $("#insertProducts").append(contents);
+                });
+            });
+            tbodyRequest.fail(function () {
+                $("#insertProducts").append("<tr><td>Error getting tools info :(</td></tr>");
+            });
+        }
+
+        addDataToTable();
+
+
+
+        $("#refresh").click(function () {
+            $("#insertProducts").html("");
+            addDataToTable();
+        });
+    })();
+</script>
+
+</body>
+</html>
