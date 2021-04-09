@@ -33,7 +33,8 @@
         <label for="content">Content</label>
         <textarea class="form-control" id="content" rows="5"></textarea>
     </div>
-    <button type="button" class="btn btn-info">Add post</button>
+    <button type="button" class="btn btn-info" id="addPost">Add post</button>
+    <button type="button" class="btn btn-info" id="deletePost">Delete post</button>
 </form>
 
 
@@ -52,10 +53,13 @@
         contents += '</div></div>';
         $("#posts").append(contents);
     }
+
+    var newPost = {};
+    var postsRequest = $.ajax("data/blog.json");
+
     function addPosts () {
-        var postsRequest = $.ajax("data/blog.json");
         postsRequest.done(function (data) {
-            data.forEach(renderPost);
+            data.data.forEach(renderPost);
         });
 
         postsRequest.fail(function () {
@@ -64,8 +68,6 @@
     }
 
     addPosts();
-
-    var newPost = {};
 
     $(document).ready(function () {
         $("#title").keyup(function () {
@@ -78,7 +80,8 @@
             newPost.content = $(this).val();
         });
 
-        $("button").click(function() {
+        $("#addPost").click(function(e) {
+            e.preventDefault();
             var date = new Date().toString().split(" ");
             var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             months.forEach(function (month) {
@@ -87,10 +90,43 @@
                 }
             });
 
-            renderPost(newPost);
-
             $('form').trigger("reset");
 
+            var addToJson = $.ajax("http://localhost:3000/data", {
+                method: "POST",
+                data: newPost
+            });
+
+            addToJson.done(function (data) {
+                $("#posts").html("");
+                addPosts();
+            });
+        });
+
+        $("#deletePost").click(function (e) {
+            e.preventDefault();
+            postsRequest.done(function (data) {
+                var blogPosts = data.data;
+                var postsToDelete = [];
+                blogPosts.forEach(function (blogPost) {
+                    if (blogPost.id !== 1 && blogPost.id !== 2) {
+                        postsToDelete.push(blogPost);
+                    }
+                });
+
+                console.log(postsToDelete[0]);
+
+                var removeFromJson = $.ajax("http://localhost:3000/data", {
+                    method: "DELETE",
+
+                    data: postsToDelete[0]
+                });
+
+                removeFromJson.done(function (data) {
+                    $("#posts").html("");
+                    addPosts();
+                });
+            });
         });
     });
 
