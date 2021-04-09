@@ -10,16 +10,29 @@
 <script>
     "use strict";
 
-    var keyCodes = '';
-    $(document).keyup(function(event){
-        keyCodes = keyCodes + event.keyCode.toString();
+    // var keyCodes = '';
+    // $(document).keyup(function(event){
+    //     keyCodes = keyCodes + event.keyCode.toString();
+    //
+    //     if (keyCodes.includes('3838404037393739666513')) {
+    //         window.alert("You have added 30 lives!");
+    //         $('body').css({'background': 'yellow'});
+    //     }
+    // });
 
-        if (keyCodes.includes('3838404037393739666513')) {
-            window.alert("You have added 30 lives!");
-            $('body').css({'background': 'yellow'});
+    var konamiCodeKeys = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a", "Enter"];
+    var keysPressed = [];
+
+    $(document).keyup(function (e) {
+        keysPressed.push(e.key);
+        if(keysPressed.length> 11) {
+            keysPressed.shift();
+        }
+        console.log(keysPressed);
+        if(konamiCodeKeys.toString().toLowerCase() === keysPressed.toString().toLowerCase()) {
+            $("body").html("You get 30 lives. Now go code some more!");
         }
     });
-
 
 </script>
 </body>
