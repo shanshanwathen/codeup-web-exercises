@@ -1,21 +1,7 @@
 "use strict";
 
 $(document).ready(function () {
-    $('dd').addClass('invisible');
-    $('.invisible').css({'visibility': 'hidden', 'margin-top': '1rem', 'margin-bottom': '1.5rem'});
-    $('dt').click(function (e) {
-            e.preventDefault();
 
-            if ($('dd').css('visibility') === 'hidden') {
-                $('dd').css('visibility', 'visible');
-                $(this).css('background-color', '#ff0');
-            } else {
-                $('dd').css('visibility', 'hidden');
-                $(this).css('background-color', '#fff');
-            }
-            $('dd').toggleClass('invisible');
-        }
-    );
 
     var html = $('body').html();
     html += '<h3 class="national-park-name">Great Smoky Mountains National Park, Tennessee</h3>';
@@ -56,5 +42,10 @@ $(document).ready(function () {
         $(this).parent().children().first().css('color', 'blue');
     });
 
+    $('dd').addClass('invisible visible');
+    $('dt').click(function () {
+            $(this).next().toggleClass('invisible');
+        }
+    );
 });
 
