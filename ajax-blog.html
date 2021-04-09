@@ -42,30 +42,21 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 <script>
+    function renderPost (post)  {
+        var contents = "";
+        contents += '<div class="card m-3"><div class="card-body p-0">';
+        contents += '<h5 class="card-title bg-info text-white p-3 m-0 rounded-top">' + post.title + '</h5>';
+        contents += '<p class="card-text m-1 ml-3"><small class="font-italic">' + post.categories + "</small></p>";
+        contents += '<p class="card-text m-3">' + post.content + "</p>";
+        contents += '<p class="card-text text-right pr-3"><small class="text-muted">' + post.date + '</small></p>';
+        contents += '</div></div>';
+        $("#posts").append(contents);
+    }
     function addPosts () {
         var postsRequest = $.ajax("data/blog.json");
         postsRequest.done(function (data) {
-            data.forEach(function(post) {
-                var contents = "";
-                contents += '<div class="card m-3"><div class="card-body p-0">';
-                contents += '<h5 class="card-title bg-info text-white p-3 m-0 rounded-top">' + post.title + '</h5>';
-                contents += '<p class="card-text m-1 ml-3"><small class="font-italic">' + post.categories + "</small></p>";
-                contents += '<p class="card-text m-3">' + post.content + "</p>";
-                contents += '<p class="card-text text-right pr-3"><small class="text-muted">' + post.date + '</small></p>';
-                contents += '</div></div>';
-                $("#posts").append(contents);
-            });
+            data.forEach(renderPost);
         });
-
-        var obj = JSON.parse(localStorage.getItem('newPostObject'));
-        var contents = "";
-        contents += '<div class="card m-3"><div class="card-body p-0">';
-        contents += '<h5 class="card-title bg-info text-white p-3 m-0 rounded-top">' + obj.title + '</h5>';
-        contents += '<p class="card-text m-1 ml-3"><small class="font-italic">' + obj.categories + "</small></p>";
-        contents += '<p class="card-text m-3">' + obj.content + "</p>";
-        contents += '<p class="card-text text-right pr-3"><small class="text-muted">' + obj.date + '</small></p>';
-        contents += '</div></div>';
-        $("#posts").append(contents);
 
         postsRequest.fail(function () {
             $("#posts").html("Oops, something went wrong :(");
@@ -96,16 +87,10 @@
                 }
             });
 
-            localStorage.setItem('newPostObject', JSON.stringify(newPost));
+            renderPost(newPost);
 
-            var newContents = "";
-            newContents += '<div class="card m-3"><div class="card-body p-0">';
-            newContents += '<h5 class="card-title bg-info text-white p-3 m-0 rounded-top">' + newPost.title + '</h5>';
-            newContents += '<p class="card-text m-1 ml-3"><small class="font-italic">' + newPost.categories + "</small></p>";
-            newContents += '<p class="card-text m-3">' + newPost.content + "</p>";
-            newContents += '<p class="card-text text-right pr-3"><small class="text-muted">' + newPost.date + '</small></p>';
-            newContents += '</div></div>';
-            $("#posts").append(newContents);
+            $('form').trigger("reset");
+
         });
     });
 
