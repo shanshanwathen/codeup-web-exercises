@@ -35,6 +35,9 @@ var map = new mapboxgl.Map({
     zoom: 9 // starting zoom
 });
 
+// Yes we can set the zoom after the map is drawn
+// map.setZoom(20);
+
 // add zoom changes
 $("#zoom").on("change", function() {
     map.flyTo({
