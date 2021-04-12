@@ -111,12 +111,18 @@ function animateMarker(timestamp) {
         // Ensure it's added to the map. This is safe to call if it's already added.
         marker.addTo(map);
     });
-    // Request the next frame of the animation.
-    requestAnimationFrame(animateMarker);
+    // // Request the next frame of the animation.
+    // requestAnimationFrame(animateMarker);
 }
 
-// Start the animation.
-requestAnimationFrame(animateMarker);
+var count = 0;
+var maxDuration = 2000;
 
-var timneoutId = setTimeout(animateMarker, 2000);
+// Start the animation.
+setInterval(function () {
+    if (count <= maxDuration) {
+        requestAnimationFrame(animateMarker);
+        count++;
+    }
+}, 1);
 
