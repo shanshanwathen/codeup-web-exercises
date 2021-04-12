@@ -14,23 +14,114 @@
     <link rel="stylesheet" href="css/weather_map.css">
     <title>Weather Map Project</title>
 </head>
-<body class="m-4">
+<body>
 
-<h1>Weather Map Project</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1">Weather Map Project</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="find-place-tab" href="#find-place" data-toggle="tab" role="tab" aria-controls="find-place" aria-selected="false">Search</a>
+            </li>
+        </ul>
+        <div class="input-group tab-pane fade" id="find-place" role="tabpanel" aria-labelledby="find-place-tab">
+            <label for="place"></label>
+            <input class="form-control" type="text" id="place" placeholder="San Antonio, TX">
+            <div class="input-group-append">
+                <button type="button" class="btn btn-secondary">Search</button>
+            </div>
+        </div>
+    </div>
+</nav>
 
 
-<h5>Tips</h5>
-<ul>
-    <li>Take time to plan out your approach for each part of the project</li>
-    <li>Commit along the way. Especially as you are starting new functionality</li>
-    <li>You may utilize the geocoder helper methods from the previous mapbox lesson</li>
-    <li>API Keys should be protected in your keys.js</li>
-    <li>Read the docs!</li>
-    <li>Get your project working, then focus on styling & refactoring</li>
-    <li>To add mapbox autocomplete search, you will need to include geocoder scripts from mapbox</li>
-</ul>
 
-<div id='map'></div>
+
+<main class="m-4">
+    <div class="card-deck">
+        <div class="card">
+            <h5 class="card-title bg-light">Card title</h5>
+            <h6 class="temperature"></h6>
+            <div class="card-body">
+                <ul class="card-text list-group">
+                    <li class="list-group-item description">Description: </li>
+                    <li class="list-group-item humidity">Humidity: </li>
+                    <li class="list-group-item wind">Wind: </li>
+                    <li class="list-group-item Pressure">Pressure: </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <h5 class="card-title bg-light">Card title</h5>
+            <h6 class="temperature"></h6>
+            <div class="card-body">
+                <ul class="card-text list-group">
+                    <li class="list-group-item description">Description: </li>
+                    <li class="list-group-item humidity">Humidity: </li>
+                    <li class="list-group-item wind">Wind: </li>
+                    <li class="list-group-item Pressure">Pressure: </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <h5 class="card-title bg-light">Card title</h5>
+            <h6 class="temperature"></h6>
+            <div class="card-body">
+                <ul class="card-text list-group">
+                    <li class="list-group-item description">Description: </li>
+                    <li class="list-group-item humidity">Humidity: </li>
+                    <li class="list-group-item wind">Wind: </li>
+                    <li class="list-group-item Pressure">Pressure: </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <h5 class="card-title bg-light">Card title</h5>
+            <h6 class="temperature"></h6>
+            <div class="card-body">
+                <ul class="card-text list-group">
+                    <li class="list-group-item description">Description: </li>
+                    <li class="list-group-item humidity">Humidity: </li>
+                    <li class="list-group-item wind">Wind: </li>
+                    <li class="list-group-item Pressure">Pressure: </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <h5 class="card-title bg-light">Card title</h5>
+            <h6 class="temperature"></h6>
+            <div class="card-body">
+                <ul class="card-text list-group">
+                    <li class="list-group-item description">Description: </li>
+                    <li class="list-group-item humidity">Humidity: </li>
+                    <li class="list-group-item wind">Wind: </li>
+                    <li class="list-group-item Pressure">Pressure: </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <h5>Tips</h5>
+    <ul>
+        <li>Take time to plan out your approach for each part of the project</li>
+        <li>Commit along the way. Especially as you are starting new functionality</li>
+        <li>You may utilize the geocoder helper methods from the previous mapbox lesson</li>
+        <li>API Keys should be protected in your keys.js</li>
+        <li>Read the docs!</li>
+        <li>Get your project working, then focus on styling & refactoring</li>
+        <li>To add mapbox autocomplete search, you will need to include geocoder scripts from mapbox</li>
+    </ul>
+
+    <div id='map'></div>
+</main>
+
 
 
 <script src="js/keys.js"></script>
