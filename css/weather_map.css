@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+/* -------------- navbar -------------- */
+div.text-light {
+    line-height: 40px;
+    margin-left: .75rem;
+}
+
 /* -------------- weather search bar -------------- */
 #current-city {
     line-height: 38px;

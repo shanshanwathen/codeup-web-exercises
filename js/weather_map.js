@@ -40,13 +40,41 @@ $(document).ready(function () {
         });
     }
 
-    geocode("San Antonio, TX", mapboxToken).then(function (results) {
-        // Put a marker on the map when click
-        var SAMarker = new mapboxgl.Marker(el)
-            .setLngLat(results)
-            .addTo(map);
-    });
-    getWeatherIN5Days();
+
+    $.get("https://api.openweathermap.org/data/2.5/weather", {
+        q: $("#current-city").html().split(": ")[1],
+        appid: openWeatherAppId,
+        units: "imperial"
+    }).done(function (results) {
+        console.log(results);
+        var html = "<h6>Current Weather</h6>";
+        html += "<p class='text-center m-0'><strong>" + results.main.temp_max + "/" + results.main.temp_min + "</strong></p>";
+        html += "<div><img id=\"weather-icon\" src=\"\" alt=\"Weather icon\"></div>";
+        html += "<ul class='list-group'>";
+        html += "<li>Description: <strong>" + results.weather[0].description + "</strong></li>";
+        html += "<li>Humidity: <strong>" + results.main.humidity + "</strong></li>";
+        html += "<li>Wind: <strong>" + results.wind.speed + "</strong></li>";
+        html += "<li>Pressure: <strong>" + results.main.pressure + "</strong></li>";
+
+        // Display weather icon
+        var iconcode = results.weather[0].icon;
+        console.log(iconcode);
+        $("#weather-icon").attr("src", "http://openweathermap.org/img/w/" + iconcode + ".png");
+        $("#weather-icon").parent().addClass("text-center");
+
+        geocode("San Antonio, TX", mapboxToken).then(function (results) {
+            var popup = new mapboxgl.Popup()
+                .setHTML(html);
+
+            // Put a marker on the map when click
+            var SAMarker = new mapboxgl.Marker(el)
+                .setLngLat(results)
+                .setPopup(popup)
+                .addTo(map);
+        });
+        getWeatherIN5Days();
+    })
+
 
     map.on('click', function (e) {
         //  Remove the origin marker
