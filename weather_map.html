@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- mapbox-gl CSS -->
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet'>
     <!-- Bootstrap CSS -->
@@ -27,104 +28,99 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="find-place-tab" href="#find-place" data-toggle="tab" role="tab" aria-controls="find-place" aria-selected="false">Search</a>
+                <a class="nav-link" href="#">About</a>
             </li>
         </ul>
-        <div class="input-group tab-pane fade" id="find-place" role="tabpanel" aria-labelledby="find-place-tab">
-            <label for="place"></label>
-            <input class="form-control" type="text" id="place" placeholder="San Antonio, TX">
-            <div class="input-group-append">
-                <button type="button" class="btn btn-secondary">Search</button>
-            </div>
-        </div>
+
     </div>
-    <div class="text-light" id="current-city">Current city: San Antonio</div>
 </nav>
 
-
-
-
 <main class="m-4">
-    <div class="card-deck">
-        <div class="card">
-            <h5 class="card-title bg-light"></h5>
-            <h6 class="temperature"></h6>
-            <div class="icon"></div>
-            <div class="card-body">
-                <ul class="card-text list-group">
-                    <li class="list-group-item description"></li>
-                    <li class="list-group-item humidity"></li>
-                    <li class="list-group-item wind"></li>
-                    <li class="list-group-item pressure"></li>
-                </ul>
+    <div class="card">
+        <div class="card-header bg-secondary d-flex justify-content-between">
+            <h5 class="text-light m-0" id="current-city">Current city: San Antonio</h5>
+            <div class="input-group">
+                <input class="form-control" type="text" id="place" placeholder="San Antonio, TX">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button" id="search"><i class="fa fa-search"></i></button>
+                </div>
+
             </div>
+
         </div>
-        <div class="card">
-            <h5 class="card-title bg-light"></h5>
-            <h6 class="temperature"></h6>
-            <div class="icon"></div>
-            <div class="card-body">
-                <ul class="card-text list-group">
-                    <li class="list-group-item description"></li>
-                    <li class="list-group-item humidity"></li>
-                    <li class="list-group-item wind"></li>
-                    <li class="list-group-item pressure"></li>
-                </ul>
+        <div class="card-body d-flex flex-column align-items-center">
+            <div class="card-deck">
+                <div class="card ml-0">
+                    <h5 class="card-title bg-secondary text-light"></h5>
+                    <h6 class="temperature"></h6>
+                    <div><img class="icon" src="" alt="Weather icon"></div>
+                    <div class="card-body">
+                        <ul class="card-text list-group">
+                            <li class="list-group-item description"></li>
+                            <li class="list-group-item humidity"></li>
+                            <li class="list-group-item wind"></li>
+                            <li class="list-group-item pressure"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5 class="card-title bg-secondary text-light"></h5>
+                    <h6 class="temperature"></h6>
+                    <div><img class="icon" src="" alt="Weather icon"></div>
+                    <div class="card-body">
+                        <ul class="card-text list-group">
+                            <li class="list-group-item description"></li>
+                            <li class="list-group-item humidity"></li>
+                            <li class="list-group-item wind"></li>
+                            <li class="list-group-item pressure"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5 class="card-title bg-secondary text-light"></h5>
+                    <h6 class="temperature"></h6>
+                    <div><img class="icon" src="" alt="Weather icon"></div>
+                    <div class="card-body">
+                        <ul class="card-text list-group">
+                            <li class="list-group-item description"></li>
+                            <li class="list-group-item humidity"></li>
+                            <li class="list-group-item wind"></li>
+                            <li class="list-group-item pressure"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <h5 class="card-title bg-secondary text-light"></h5>
+                    <h6 class="temperature"></h6>
+                    <div><img class="icon" src="" alt="Weather icon"></div>
+                    <div class="card-body">
+                        <ul class="card-text list-group">
+                            <li class="list-group-item description"></li>
+                            <li class="list-group-item humidity"></li>
+                            <li class="list-group-item wind"></li>
+                            <li class="list-group-item pressure"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card mr-0">
+                    <h5 class="card-title bg-secondary text-light"></h5>
+                    <h6 class="temperature"></h6>
+                    <div><img class="icon" src="" alt="Weather icon"></div>
+                    <div class="card-body">
+                        <ul class="card-text list-group">
+                            <li class="list-group-item description"></li>
+                            <li class="list-group-item humidity"></li>
+                            <li class="list-group-item wind"></li>
+                            <li class="list-group-item pressure"></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+            <div class="mt-3" id='map'></div>
         </div>
-        <div class="card">
-            <h5 class="card-title bg-light"></h5>
-            <h6 class="temperature"></h6>
-            <div class="icon"></div>
-            <div class="card-body">
-                <ul class="card-text list-group">
-                    <li class="list-group-item description"></li>
-                    <li class="list-group-item humidity"></li>
-                    <li class="list-group-item wind"></li>
-                    <li class="list-group-item pressure"></li>
-                </ul>
-            </div>
-        </div>
-        <div class="card">
-            <h5 class="card-title bg-light"></h5>
-            <h6 class="temperature"></h6>
-            <div class="icon"></div>
-            <div class="card-body">
-                <ul class="card-text list-group">
-                    <li class="list-group-item description"></li>
-                    <li class="list-group-item humidity"></li>
-                    <li class="list-group-item wind"></li>
-                    <li class="list-group-item pressure"></li>
-                </ul>
-            </div>
-        </div>
-        <div class="card">
-            <h5 class="card-title bg-light"></h5>
-            <h6 class="temperature"></h6>
-            <div class="icon"></div>
-            <div class="card-body">
-                <ul class="card-text list-group">
-                    <li class="list-group-item description"></li>
-                    <li class="list-group-item humidity"></li>
-                    <li class="list-group-item wind"></li>
-                    <li class="list-group-item pressure"></li>
-                </ul>
-            </div>
-        </div>
+
     </div>
 
-    <h5>Tips</h5>
-    <ul>
-        <li>Take time to plan out your approach for each part of the project</li>
-        <li>Commit along the way. Especially as you are starting new functionality</li>
-        <li>You may utilize the geocoder helper methods from the previous mapbox lesson</li>
-        <li>API Keys should be protected in your keys.js</li>
-        <li>Read the docs!</li>
-        <li>Get your project working, then focus on styling & refactoring</li>
-        <li>To add mapbox autocomplete search, you will need to include geocoder scripts from mapbox</li>
-    </ul>
-
-    <div id='map'></div>
 </main>
 
 
