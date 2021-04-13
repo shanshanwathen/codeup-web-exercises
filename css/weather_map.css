@@ -2,6 +2,24 @@
     box-sizing: border-box;
 }
 
+.dark-theme {
+    background-color: #363433;
+}
+
+.dark-card {
+    color: #d7d7d7;
+    background-color: #3d3640;
+}
+
+.dark-input {
+    color: #cccccc;
+    background-color: #50423c;
+}
+
+.dark {
+    color: #ececec;
+}
+
 /* -------------- navbar -------------- */
 div.text-light {
     line-height: 40px;

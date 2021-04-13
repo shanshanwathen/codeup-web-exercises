@@ -46,21 +46,23 @@ $(document).ready(function () {
         appid: openWeatherAppId,
         units: "imperial"
     }).done(function (results) {
-        console.log(results);
         var html = "<h6>Current Weather</h6>";
         html += "<p class='text-center m-0'><strong>" + results.main.temp_max + "/" + results.main.temp_min + "</strong></p>";
-        html += "<div><img id=\"weather-icon\" src=\"\" alt=\"Weather icon\"></div>";
+
+        // Display weather icon
+        var iconcode = results.weather[0].icon;
+        var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+
+        html += "<div class='text-center'><img id='weather-icon' src='" + iconurl + "' alt='Weather icon'></div>";
+        // $("#weather-icon").attr("src", iconurl);
+
         html += "<ul class='list-group'>";
         html += "<li>Description: <strong>" + results.weather[0].description + "</strong></li>";
         html += "<li>Humidity: <strong>" + results.main.humidity + "</strong></li>";
         html += "<li>Wind: <strong>" + results.wind.speed + "</strong></li>";
         html += "<li>Pressure: <strong>" + results.main.pressure + "</strong></li>";
 
-        // Display weather icon
-        var iconcode = results.weather[0].icon;
-        console.log(iconcode);
-        $("#weather-icon").attr("src", "http://openweathermap.org/img/w/" + iconcode + ".png");
-        $("#weather-icon").parent().addClass("text-center");
+
 
         geocode("San Antonio, TX", mapboxToken).then(function (results) {
             var popup = new mapboxgl.Popup()
@@ -138,3 +140,17 @@ var el = document.createElement('div');
 el.className = 'marker';
 
 $(".card-title").addClass("rounded-top");
+
+$(".dark-mode").click(function () {
+    $("body").toggleClass("dark-theme");
+    $(".card-header").toggleClass("bg-dark");
+    $(".card, li").toggleClass("dark-card");
+    $(".h1, h5").toggleClass("dark");
+    $("#place").toggleClass("btn-dark dark-input");
+    $(".mapboxgl-popup-content").toggleClass("bg-dark");
+    if ($("body").hasClass("dark-theme")) {
+        map.setStyle("mapbox://styles/mapbox/dark-v10");
+    } else {
+        map.setStyle("mapbox://styles/mapbox/streets-v11");
+    }
+});
