@@ -26,6 +26,19 @@ div.text-light {
     margin-left: .75rem;
 }
 
+div.navbar-toggler {
+    border: 0;
+}
+
+.list-group-item.active {
+    background-color: #343a40;
+    border: 0;
+}
+
+li.nav-item:nth-child(2) {
+    background-color: #343a40;
+}
+
 /* -------------- weather search bar -------------- */
 #current-city {
     line-height: 38px;

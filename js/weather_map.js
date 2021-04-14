@@ -62,18 +62,18 @@ $(document).ready(function () {
         var html = "<h6>Current Weather</h6>";
         currentWeatherArr.forEach(function (weatherAspect) {
             html += weatherAspect;
+            $("li").addClass("list-group-item");
         });
 
-        console.log(currentWeatherArr);
         return html;
     }
 
-    var city = $("#current-city").html().split(": ")[1];
     $.get("https://api.openweathermap.org/data/2.5/weather", {
-        q: city,
+        q: $("#current-city").html().split(": ")[1],
         appid: openWeatherAppId,
         units: "imperial"
     }).done(function (weather) {
+        getWeatherIN5Days();
         var html = getCurrentWeather(weather);
         var currentWeather = new mapboxgl.Popup()
             .setHTML(html);
@@ -84,22 +84,22 @@ $(document).ready(function () {
             .addTo(map);
     });
 
-    getWeatherIN5Days();
-
-
     map.on('click', function (e) {
         //  Remove the origin marker & popup
         $(".mapboxgl-marker").remove();
-        $(".mapboxgl-popup-content").remove();
 
+        map.flyTo({
+            center: e.lngLat,
+            zoom: 15,
+            speed: 0.5
+        })
         // Use reverseGeocode to get the location address
         reverseGeocode(e.lngLat, mapboxToken).then(function (results) {
             console.log(results)
             var cityArr = results.split(", ");
-            city = cityArr[cityArr.length - 3];
+            var city = cityArr[cityArr.length - 3];
 
-            console.log(city);
-            // Display current location city name on the navbar
+            // Display current location city name on the search bar
             $("#current-city").html("Current city: " + city);
 
             // Update the five-day forecast in new location
@@ -112,7 +112,8 @@ $(document).ready(function () {
             }).done(function (results) {
                 var html = getCurrentWeather(results);
                 var currentWeather = new mapboxgl.Popup()
-                    .setHTML(html);
+                    .setHTML(html)
+                    .addTo(map);
 
                 new mapboxgl.Marker(el)
                     .setLngLat(e.lngLat)
