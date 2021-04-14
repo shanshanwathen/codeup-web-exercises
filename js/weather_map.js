@@ -40,61 +40,85 @@ $(document).ready(function () {
         });
     }
 
+    var currentWeatherArr = [];
+    function getCurrentWeather(weather) {
+        console.log(currentWeatherArr);
 
+            if (currentWeatherArr !== []) {
+                currentWeatherArr = [];
+            }
+            currentWeatherArr.push("<p class='text-center m-0'><strong>" + weather.main.temp_max + "/" + weather.main.temp_min + "</strong></p>");
+
+            // Display weather icon
+            var iconcode = weather.weather[0].icon;
+            var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+            currentWeatherArr.push("<div class='text-center'><img id='weather-icon' src='" + iconurl + "' alt='Weather icon'></div>");
+
+            currentWeatherArr.push("<ul class='list-group'><li>Description: <strong>" + weather.weather[0].description + "</strong></li>");
+            currentWeatherArr.push("<li>Humidity: <strong>" + weather.main.humidity + "</strong></li>");
+            currentWeatherArr.push("<li>Wind: <strong>" + weather.wind.speed + "</strong></li>");
+            currentWeatherArr.push("<li>Pressure: <strong>" + weather.main.pressure + "</strong></li></ul>");
+
+        var html = "<h6>Current Weather</h6>";
+        currentWeatherArr.forEach(function (weatherAspect) {
+            html += weatherAspect;
+        });
+
+        console.log(currentWeatherArr);
+        return html;
+    }
+
+    var city = $("#current-city").html().split(": ")[1];
     $.get("https://api.openweathermap.org/data/2.5/weather", {
-        q: $("#current-city").html().split(": ")[1],
+        q: city,
         appid: openWeatherAppId,
         units: "imperial"
-    }).done(function (results) {
-        var html = "<h6>Current Weather</h6>";
-        html += "<p class='text-center m-0'><strong>" + results.main.temp_max + "/" + results.main.temp_min + "</strong></p>";
+    }).done(function (weather) {
+        var html = getCurrentWeather(weather);
+        var currentWeather = new mapboxgl.Popup()
+            .setHTML(html);
 
-        // Display weather icon
-        var iconcode = results.weather[0].icon;
-        var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+        new mapboxgl.Marker(el)
+            .setLngLat([-98.4951, 29.4246])
+            .setPopup(currentWeather)
+            .addTo(map);
+    });
 
-        html += "<div class='text-center'><img id='weather-icon' src='" + iconurl + "' alt='Weather icon'></div>";
-        // $("#weather-icon").attr("src", iconurl);
-
-        html += "<ul class='list-group'>";
-        html += "<li>Description: <strong>" + results.weather[0].description + "</strong></li>";
-        html += "<li>Humidity: <strong>" + results.main.humidity + "</strong></li>";
-        html += "<li>Wind: <strong>" + results.wind.speed + "</strong></li>";
-        html += "<li>Pressure: <strong>" + results.main.pressure + "</strong></li>";
-
-
-
-        geocode("San Antonio, TX", mapboxToken).then(function (results) {
-            var popup = new mapboxgl.Popup()
-                .setHTML(html);
-
-            // Put a marker on the map when click
-            var SAMarker = new mapboxgl.Marker(el)
-                .setLngLat(results)
-                .setPopup(popup)
-                .addTo(map);
-        });
-        getWeatherIN5Days();
-    })
+    getWeatherIN5Days();
 
 
     map.on('click', function (e) {
-        //  Remove the origin marker
+        //  Remove the origin marker & popup
         $(".mapboxgl-marker").remove();
-
-        // Put a marker on the map when click
-        new mapboxgl.Marker(el)
-            .setLngLat(e.lngLat)
-            .addTo(map);
+        $(".mapboxgl-popup-content").remove();
 
         // Use reverseGeocode to get the location address
         reverseGeocode(e.lngLat, mapboxToken).then(function (results) {
+            console.log(results)
+            var cityArr = results.split(", ");
+            city = cityArr[cityArr.length - 3];
 
+            console.log(city);
             // Display current location city name on the navbar
-            $("#current-city").html("Current city: " + results.split(", ")[1]);
+            $("#current-city").html("Current city: " + city);
 
             // Update the five-day forecast in new location
             getWeatherIN5Days();
+
+            $.get("https://api.openweathermap.org/data/2.5/weather", {
+                q: city,
+                appid: openWeatherAppId,
+                units: "imperial"
+            }).done(function (results) {
+                var html = getCurrentWeather(results);
+                var currentWeather = new mapboxgl.Popup()
+                    .setHTML(html);
+
+                new mapboxgl.Marker(el)
+                    .setLngLat(e.lngLat)
+                    .setPopup(currentWeather)
+                    .addTo(map);
+            });
         });
     });
 
@@ -103,9 +127,24 @@ $(document).ready(function () {
 
         // Get coordinates using goecode & update current city and weather
         geocode($("#place").val(), mapboxToken).then(function (results) {
-            var marker = new mapboxgl.Marker(el)
-                .setLngLat(results)
-                .addTo(map);
+
+            // Display current location city name on the navbar
+            $("#current-city").html("Current city: " + $("#place").val().charAt(0).toUpperCase() + $("#place").val().slice(1).toLowerCase());  // case insensitive
+
+            $.get("https://api.openweathermap.org/data/2.5/weather", {
+                q: $("#place").val(),
+                appid: openWeatherAppId,
+                units: "imperial"
+            }).done(function (weather) {
+                var html = getCurrentWeather(weather);
+                var currentWeather = new mapboxgl.Popup()
+                    .setHTML(html);
+
+                new mapboxgl.Marker(el)
+                    .setLngLat(results)
+                    .setPopup(currentWeather)
+                    .addTo(map);
+            });
 
             // fly to the place searched
             map.flyTo({
@@ -114,16 +153,12 @@ $(document).ready(function () {
                 speed: 0.5
             });
 
-            // Display current location city name on the navbar
-            $("#current-city").html("Current city: " + $("#place").val().charAt(0).toUpperCase() + $("#place").val().slice(1).toLowerCase());  // case insensitive
-
             // Update the five-day forecast in new location
             getWeatherIN5Days();
 
             $("#place").val("");  // clear input
         });
     });
-
 });
 
 
