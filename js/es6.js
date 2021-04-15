@@ -34,29 +34,29 @@ const users = [
 const name = 'Shanshan';
 const email = 'shanshansu36@gmail.com';
 const languages = ['html', 'css', 'javascript'];
-const user = {name, email, languages};
+
+// cannot reassign
+// name = "Larry";
 
 // TODO: rewrite the object literal using object property shorthand
-users.push(user);
+users.push({name, email, languages});
 
 // TODO: replace `var` with `let` in the following variable declarations
 let emails = [];
 let names = [];
 
 // TODO: rewrite the following using arrow functions
-// users.forEach(function(user) {
+// users.forEach((user) => {
 //     return emails.push(user.email);
 // });
 
-let getEmails = (user) => emails.push(user.email)
-users.forEach(getEmails);
+users.forEach((user) => emails.push(user.email));
 
 // users.forEach(function(user) {
 //     return names.push(user.name);
 // });
 
-let getNames = user => names.push(user.name);
-users.forEach(getNames);
+users.forEach(user => names.push(user.name));
 
 // TODO: replace `var` with `let` in the following declaration
 let developers = [];
@@ -67,23 +67,39 @@ users.forEach(function(user) {
     // const name = user.name;
     // const email = user.email;
     // const languages = user.languages;
+    // Object destructuring in the function
     const {name, email, languages} = user;
 
     // TODO: rewrite the assignment below to use template strings
     // developers.push(name + '\'s email is ' + email + name + ' knows ' + languages.join(', '));
-    developers.push(`${name}'s email is ${email} ${name} knows ${languages}`);
+    developers.push(`${name}'s email is ${email}. ${name} knows ${languages.join(', ')}`);
 });
 
-// TODO: Use `let` for the following variable
+// Object destructuring in parameter
+users.forEach(function({name, email, languages}) {
+    developers.push(`${name}'s email is ${email} ${name} knows ${languages.join(', ')}`);
+});
+
+// // TODO: Use `let` for the following variable
+// let list = '<ul>';
+//
+// // TODO: rewrite the following loop to use a for..of loop
+// developers.forEach(function (developer) {
+//
+//     // TODO: rewrite the assignment below to use template strings
+//     // list += '<li>' + developer + '</li>';
+//     list += `<li>${developer}</li>`;
+// }
+//
+// list += '</ul>';
+
+
 let list = '<ul>';
-
-// TODO: rewrite the following loop to use a for..of loop
 for (let developer of developers) {
-
-    // TODO: rewrite the assignment below to use template strings
-    // list += '<li>' + developer + '</li>';
     list += `<li>${developer}</li>`;
 }
 
 list += '</ul>';
+
+
 
