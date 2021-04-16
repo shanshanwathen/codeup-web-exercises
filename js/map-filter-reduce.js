@@ -47,8 +47,17 @@ console.log(emails);
 const totalExperience = users.reduce((total, user) => (total + user.yearsOfExperience), 0);
 console.log(totalExperience);
 
-const longestEmail = emails.reduce((longest, email, index) => {
+const longestEmail = emails.reduce((longest, email) => {
     if (email.length > longest.length) {
-
+        longest  = email;
     }
-}, "")
+    return longest;
+}, "");
+console.log(longestEmail);
+
+let userNames = users.reduce((userNamesString, user) => {
+    return userNamesString + user.name + ", ";
+}, "Your instructors are: ");
+
+userNames = userNames.slice(0, userNames.length - 2) + ".";
+console.log(userNames);
