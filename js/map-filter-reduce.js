@@ -61,3 +61,19 @@ let userNames = users.reduce((userNamesString, user) => {
 
 userNames = userNames.slice(0, userNames.length - 2) + ".";
 console.log(userNames);
+
+
+const languages = users.reduce((languages,user) => {
+    return languages.concat(user.languages);
+}, []);
+
+console.log(languages);
+
+const uniqueLanguages = languages.reduce((unique, language) => {
+        if (!unique.includes(language)) {
+            unique.push(language);
+        }
+    return unique;
+}, []);
+
+console.log(uniqueLanguages);
