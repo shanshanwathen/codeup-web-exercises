@@ -39,7 +39,7 @@
         } else if (colorName === "violet") {
             return "Can you tell me something about violet?";
         } else {
-            return "I don't know anything about " + colorName + ".";
+            return `I don't know anything about ${colorName}.`;
         }
     }
 
@@ -50,8 +50,8 @@
     // - `colors`: a list of the colors of the rainbow
     // - `randomColor`: contains a single random color value from the list (this
     //                  will contain a different color every time the page loads)
-    var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-    var randomColor = colors[Math.floor(Math.random() * colors.length)];
+    const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
     /**
      * TODO:
      * Pass the `randomColor` variable to your function and console.log the results.
@@ -82,7 +82,7 @@
             case "violet":
                 return ("Can you tell me something about violet?");
             default:
-                return ("I don't know anything about " + colorName + ".");
+                return (`I don't know anything about ${colorName}.`);
         }
     }
 
@@ -93,7 +93,7 @@
      * function to show it to the user.
      */
 
-    var color = prompt("What's your favorite color?");
+    const color = prompt("What's your favorite color?");
     alert(analyzeColorAnother(color));
 
     /* ########################################################################## */
@@ -163,13 +163,13 @@
      * price before the discount was, and what their price after the discount is.
      */
     // Generate a random number between 0 and 6
-    var luckyNumber = Math.floor(Math.random() * 6);
+    const luckyNumber = Math.floor(Math.random() * 6);
 
-    var totalBill = Number(prompt("What's your bill total?"));
+    const totalBill = Number(prompt("What's your bill total?"));
 
-    alert("Your lucky number was " + luckyNumber  +  ".");
-    alert("Your price before the discount was $" + totalBill + ".");
-    alert("Your total bill after the discount is $" + calculateTotal(luckyNumber, totalBill) + ".");
+    alert(`Your lucky number was ${luckyNumber}.`);
+    alert(`Your price before the discount was $${totalBill}.`);
+    alert(`Your total bill after the discount is $ ${calculateTotal(luckyNumber, totalBill)}.`);
 
     /**
      * TODO:
@@ -188,55 +188,55 @@
      * HINT: The way we prompt for a value could be improved
      */
 
-    var enterOrNot = confirm("Would you like to enter a number?");
+    const enterOrNot = confirm("Would you like to enter a number?");
     if (enterOrNot === true) {
-        var numberEntered = Number(prompt("Great, please enter a number."));
+        const numberEntered = Number(prompt("Great, please enter a number."));
         if(isNaN(numberEntered) === true) {
             alert("What you entered was not a number.");
         } else {
             if (numberEntered % 2 === 0) {
-                alert(numberEntered + " is an even number.");
+                alert(`${numberEntered} is an even number.`);
             } else {
-                alert(numberEntered + " is an odd number.");
+                alert(`${numberEntered} is an odd number.`);
             }
 
-            alert(numberEntered + " plus 100 is " + (numberEntered + 100) + ".");
+            alert(`${numberEntered} plus 100 is ${numberEntered + 100}.`);
 
             if (numberEntered > 0) {
-                alert(numberEntered + " is a positive number.");
+                alert(`${numberEntered} is a positive number.`);
             } else if (numberEntered < 0) {
-                alert(numberEntered + " is a negative number.");
+                alert(`${numberEntered} is a negative number.`);
             }
         }
     }
 
     //Refactor code of last exercise
-    var enterANumber = confirm("Would you like to enter a number? :)")
+    const enterANumber = confirm("Would you like to enter a number? :)")
     if (enterANumber === true) {
-        var number = Number(prompt("Great, please enter a number :)"));
+        const number = Number(prompt("Great, please enter a number :)"));
         isNumberOrNot(number);
     }
 
     function isEvenOrOdd(number) {
         switch (number % 2) {
             case 0:
-                alert (number + " is an even number.");
+                alert (`${number} is an even number.`);
                 break;
             default:
-                alert (number + " is an odd number.");
+                alert (`${number} is an odd number.`);
                 break;
         }
     }
 
     function addHundred(number) {
-        alert(number + " plus 100 is " + (number + 100) + ".");
+        alert(`${number} plus 100 is ${number + 100}.`);
     }
 
     function isNegativeOrPositive(number) {
         if (number > 0) {
-            alert (number + " is a positive number.");
+            alert (`${number} is a positive number.`);
         } else if (number < 0) {
-            alert (number + " is a negative number.");
+            alert (`${number} is a negative number.`);
         }
     }
 
