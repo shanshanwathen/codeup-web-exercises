@@ -9,63 +9,66 @@ $(document).ready(function () {
     // Call 5 day / 3 hour forecast data
 
     function getWeatherIN5Days() {
-        var weatherIn5Days = [];
         $.get("https://api.openweathermap.org/data/2.5/forecast",  {
             q: $("#current-city").html().split(": ")[1],
             appid: openWeatherAppId,
             units: "imperial"
         }).done(function (results) {
-            var weathersInEvery3Hrs = results.list;   // 5 day / 3 hour forecast data (0:00am, 3:00, 6:00, 9:00, 12:00pm, 3:00pm, 6:00pm, 9:00pm)
+            let weathersInEvery3Hrs = results.list;   // 5 day / 3 hour forecast data (0:00am, 3:00, 6:00, 9:00, 12:00pm, 3:00pm, 6:00pm, 9:00pm)
 
             // filter out the weathers at 9:00am everyday
-            weathersInEvery3Hrs.forEach(function (weather) {
-                if (weather.dt_txt.split(" ")[1] === "09:00:00") {
-                    weatherIn5Days.push(weather);
-                }
-            });
+            const weatherIn5Days = weathersInEvery3Hrs.filter(weather => weather.dt_txt.split(" ")[1] === "09:00:00");
 
-            for (var i = 0; i < weatherIn5Days.length; i++) {
-                $(".card-title").eq(i).html(weatherIn5Days[i].dt_txt.split(" ")[0]);
+            for (let i = 0; i < weatherIn5Days.length; i++) {
+                const iconcode = weatherIn5Days[i].weather[0].icon;
+                const iconurl = `http://openweathermap.org/img/w/${iconcode}.png`;
+                $(".card-deck .card").eq(i).html(
+                    `<h5>${weatherIn5Days[i].dt_txt.split(" ")[0]}</h5>
+                    <h6><strong>${weatherIn5Days[i].main.temp_max}/${weatherIn5Days[i].main.temp_min}</strong></h6>
+                    <div><img src=${iconurl} alt="Weather icon"></div>
+                    <div class="card-body">
+                        <ul class="card-text list-group">
+                            <li>Description: <strong>${weatherIn5Days[i].weather[0].description}</strong></li>
+                            <li>Humidity: <strong>${weatherIn5Days[i].main.humidity}</strong></li>
+                            <li>Wind: <strong>${weatherIn5Days[i].wind.speed}</strong></li>
+                            <li>Pressure: <strong>${weatherIn5Days[i].main.pressure}</strong></li>
+                        </ul>
+                    </div>
+                </div>`);
 
-                $(".temperature").eq(i).html("<strong>" + weatherIn5Days[i].main.temp_max + '/' + weatherIn5Days[i].main.temp_min + "</strong>");
-                var iconcode = weatherIn5Days[i].weather[0].icon;
-                var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-                $(".icon").eq(i).attr("src", iconurl);
-                $(".icon").parent().addClass("text-center");
-                $(".description").eq(i).html("Description: <strong>" + weatherIn5Days[i].weather[0].description + "</strong>");
-                $(".humidity").eq(i).html("Humidity: <strong>" + weatherIn5Days[i].main.humidity + "</strong>");
-                $(".wind").eq(i).html("Wind: <strong>" + weatherIn5Days[i].wind.speed + "</strong>");
-                $(".pressure").eq(i).html("Pressure: <strong>" + weatherIn5Days[i].main.pressure + "</strong>");
+                $("h5").addClass("card-title bg-secondary text-light rounded-top");
+                $("img").parent().addClass("text-center");
+                $("li").addClass("list-group-item");
             }
         });
     }
 
-    var currentWeatherArr = [];
+    let currentWeather = "";
+    let defaultWeatherForecast = "";
     function getCurrentWeather(weather) {
-        console.log(currentWeatherArr);
+        console.log(currentWeather);
 
-            if (currentWeatherArr !== []) {
-                currentWeatherArr = [];
-            }
-            currentWeatherArr.push("<p class='text-center m-0'><strong>" + weather.main.temp_max + "/" + weather.main.temp_min + "</strong></p>");
+        if (currentWeather !== "") {
+            currentWeather = "";
+        }
 
             // Display weather icon
-            var iconcode = weather.weather[0].icon;
-            var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-            currentWeatherArr.push("<div class='text-center'><img id='weather-icon' src='" + iconurl + "' alt='Weather icon'></div>");
+        const iconcode = weather.weather[0].icon;
+        const iconurl = `http://openweathermap.org/img/w/${iconcode}.png`;
 
-            currentWeatherArr.push("<ul class='list-group'><li>Description: <strong>" + weather.weather[0].description + "</strong></li>");
-            currentWeatherArr.push("<li>Humidity: <strong>" + weather.main.humidity + "</strong></li>");
-            currentWeatherArr.push("<li>Wind: <strong>" + weather.wind.speed + "</strong></li>");
-            currentWeatherArr.push("<li>Pressure: <strong>" + weather.main.pressure + "</strong></li></ul>");
+        currentWeather =
+            `<h6>Current Weather</h6>
+            <p class='text-center m-0'><strong>${weather.main.temp_max}/${weather.main.temp_min}</strong></p>
+            <div class='text-center'><img id='weather-icon' src=${iconurl} alt='Weather icon'></div>
+            <ul class='list-group'>
+                <li>Description: <strong>${weather.weather[0].description}</strong></li>
+                <li>Humidity: <strong>${weather.main.humidity}</strong></li>
+                <li>Wind: <strong>${weather.wind.speed}</strong></li>
+                <li>Pressure: <strong>${weather.main.pressure}</strong></li>
+            </ul>`;
+        $("li").addClass("list-group-item");
 
-        var html = "<h6>Current Weather</h6>";
-        currentWeatherArr.forEach(function (weatherAspect) {
-            html += weatherAspect;
-            $("li").addClass("list-group-item");
-        });
-
-        return html;
+        return currentWeather;
     }
 
     $.get("https://api.openweathermap.org/data/2.5/weather", {
@@ -74,30 +77,24 @@ $(document).ready(function () {
         units: "imperial"
     }).done(function (weather) {
         getWeatherIN5Days();
-        var html = getCurrentWeather(weather);
-        var currentWeather = new mapboxgl.Popup()
-            .setHTML(html);
+        const displayCurrentWeather = new mapboxgl.Popup()
+            .setHTML(getCurrentWeather(weather));
 
         new mapboxgl.Marker(el)
             .setLngLat([-98.4951, 29.4246])
-            .setPopup(currentWeather)
+            .setPopup(displayCurrentWeather)
             .addTo(map);
     });
 
-    map.on('click', function (e) {
-        //  Remove the origin marker & popup
-        $(".mapboxgl-marker").remove();
+    defaultWeatherForecast = $(".card-deck").html();
+    console.log(defaultWeatherForecast);
 
-        map.flyTo({
-            center: e.lngLat,
-            zoom: 15,
-            speed: 0.5
-        })
+    map.on('click', function (e) {
         // Use reverseGeocode to get the location address
         reverseGeocode(e.lngLat, mapboxToken).then(function (results) {
             console.log(results)
-            var cityArr = results.split(", ");
-            var city = cityArr[cityArr.length - 3];
+            const cityArr = results.split(", ");
+            const city = cityArr[cityArr.length - 3];
 
             // Display current location city name on the search bar
             $("#current-city").html("Current city: " + city);
@@ -110,17 +107,22 @@ $(document).ready(function () {
                 appid: openWeatherAppId,
                 units: "imperial"
             }).done(function (results) {
-                var html = getCurrentWeather(results);
-                var currentWeather = new mapboxgl.Popup()
-                    .setHTML(html)
+                const displayCurrentWeather = new mapboxgl.Popup()
+                    .setHTML(getCurrentWeather(results))
                     .addTo(map);
 
                 new mapboxgl.Marker(el)
                     .setLngLat(e.lngLat)
-                    .setPopup(currentWeather)
+                    .setPopup(displayCurrentWeather)
                     .addTo(map);
             });
         });
+
+        map.flyTo({
+            center: e.lngLat,
+            zoom: 15,
+            speed: 0.5
+        })
     });
 
     $("#search").click(function (e) {
@@ -137,9 +139,8 @@ $(document).ready(function () {
                 appid: openWeatherAppId,
                 units: "imperial"
             }).done(function (weather) {
-                var html = getCurrentWeather(weather);
                 var currentWeather = new mapboxgl.Popup()
-                    .setHTML(html);
+                    .setHTML(getCurrentWeather(weather));
 
                 new mapboxgl.Marker(el)
                     .setLngLat(results)
@@ -164,7 +165,7 @@ $(document).ready(function () {
 
 
 mapboxgl.accessToken = mapboxToken;
-var map = new mapboxgl.Map({
+const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v11', // style URL
     center: [-98.491142, 29.424349], // starting position [lng, lat]
@@ -172,7 +173,7 @@ var map = new mapboxgl.Map({
 });
 
 // add custom icon to replace the default icon
-var el = document.createElement('div');
+const el = document.createElement('div');
 el.className = 'marker';
 
 $(".card-title").addClass("rounded-top");
@@ -183,6 +184,9 @@ $(".dark-mode").click(function () {
     $(".card, li").toggleClass("dark-card");
     $(".h1, h5").toggleClass("dark");
     $("#place").toggleClass("btn-dark dark-input");
+    $(".modal-header, .modal-footer").toggleClass("dark-theme");
+    $(".modal-body").toggleClass("dark-card");
+    $("#x").toggleClass("dark");
     $(".mapboxgl-popup-content").toggleClass("bg-dark");
     if ($("body").hasClass("dark-theme")) {
         map.setStyle("mapbox://styles/mapbox/dark-v10");
