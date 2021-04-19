@@ -7,7 +7,7 @@
      * 'names'.
      */
 
-    var names = ["Eva", "WALL-E",  "Mari", "Jewell"];
+    const names = ["Eva", "WALL-E",  "Mari", "Jewell"];
 
     /**
      * TODO:
@@ -15,7 +15,7 @@
      * array.
      */
 
-    console.log("There are " + names.length + " names in the array.");
+    console.log(`There are ${names.length} names in the array.`);
 
     /**
      * TODO:
@@ -23,10 +23,10 @@
      * accessing each element's index.
      */
 
-    console.log("The first name is: " + names[0] + ".");
-    console.log("The second name is: " + names[1] + ".");
-    console.log("The third name is: " + names[2] + ".");
-    console.log("The fourth name is: " + names[3] + ".");
+    console.log(`The first name is: ${names[0]}.`);
+    console.log(`The second name is: ${names[1]}.`);
+    console.log(`The third name is: ${names[2]}.`);
+    console.log(`The fourth name is: ${names[3]}.`);
 
     /**
      * TODO:
@@ -34,8 +34,8 @@
      * array.
      */
 
-    for (var i = 0; i < names.length; i++) {
-        console.log("The name at index " + i + "  is: " + names[i] + ".");
+    for (let i = 0; i < names.length; i++) {
+        console.log(`The name at index ${i} is: ${names[i]}.`);
     }
 
     /**
@@ -44,7 +44,7 @@
      */
 
     names.forEach(function(name,i, names) {
-        console.log("The name at index " + i + "  is: " + names[i] + ".");
+        console.log(`The name at index ${i} is: ${names[i]}.`);
     });
 
     /**
