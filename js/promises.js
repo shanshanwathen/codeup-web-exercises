@@ -12,6 +12,17 @@ function githubPromise(username) {
 
 githubPromise("shanshan-su");
 
+
+function githubEventsPromise(username) {
+    return fetch(`https://api.github.com/users/${username}/events`, {headers: {'Authorization': githubToken}})
+        .then(response => {return response.json()})
+        .then(results => console.log(results[0].created_at.split("T")[0]))
+        .catch(error => console.log(`Promise rejected: 
+    ${error}`));
+}
+
+githubEventsPromise("shanshan-su");
+
 // TODO: Write a function named wait that accepts a number as a parameter, and returns a promise that resolves after the passed number of milliseconds.
 // TODO:  As a bonus make sure the promise resolves with the milliseconds in return, so you can make the console log message more dynamic.
 
