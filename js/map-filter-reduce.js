@@ -38,11 +38,17 @@ const users = [
     }
 ];
 
+// TODO: Use .filter to create an array of user objects where each user object has at least 3 languages in the languages array.
+
 const newUsers = users.filter(user => user.languages.length >= 3);
 console.log(newUsers);
 
+// TODO: Use .map to create an array of strings where each element is a user's email address
+
 const emails = users.map(user => user.email);
 console.log(emails);
+
+// TODO: Use .reduce to get the total years of experience from the list of users. Once you get the total of years you can use the result to calculate the average.
 
 const totalExperience = users.reduce((total, user) => (total + user.yearsOfExperience), 0);
 console.log(totalExperience);
@@ -50,21 +56,30 @@ console.log(totalExperience);
 const averageExperience = totalExperience / users.length;
 console.log(averageExperience);
 
-const longestEmail = emails.reduce((longest, email) => {
-    if (email.length > longest.length) {
-        longest = email;
+// TODO: Use .reduce to get the longest email from the list of users.
+
+const longestEmail = users.reduce((longest, user) => {
+    if (user.email.length > longest.length) {
+        longest = user.email;
     }
     return longest;
 }, "");
 console.log(longestEmail);
 
-let userNames = users.reduce((userNamesString, user) => {
-    return userNamesString + user.name + ", ";
-}, "Your instructors are: ");
+//TODO: Use .reduce to get the list of user's names in a single string. Example: Your instructors are: ryan, luis, zach, fernando, justin.  .map would be easier
 
-userNames = userNames.slice(0, userNames.length - 2) + ".";
+let userNames = users.reduce((userNamesString, user) => {
+    return `${userNamesString} ${user.name},`;
+}, "Your instructors are: ").slice(0, -1) + ".";
+
 console.log(userNames);
 
+let mapJoinSolution = `instructors are: ${users.map(user => user.name).join(", ")}.`;
+
+console.log(mapJoinSolution);
+
+// Bonus
+//TODO: Use .reduce to get the unique list of languages from the list of users.
 
 const languages = users.reduce((languages,user) => {
     return languages.concat(user.languages);
