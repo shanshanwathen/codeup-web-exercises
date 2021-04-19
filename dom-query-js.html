@@ -34,7 +34,7 @@
         "use strict";
         // TODO: Uncomment next line and get the main header element by id
 
-        var mainHeader = document.getElementById("main-header");
+        const mainHeader = document.getElementById("main-header");
 
         // TODO: Set inner html of mainHeader to "JavaScript is Cool"
 
@@ -44,7 +44,7 @@
 
         // TODO: Uncomment the next line and get the sub header element by id
 
-        var subHeader = document.getElementById("sub-header");
+        const subHeader = document.getElementById("sub-header");
 
         // TODO: Set the text color of subHeader to blue
 
@@ -54,14 +54,14 @@
 
         // TODO: Uncomment the next line and get all list items
 
-        var listItems = document.getElementsByTagName("li");
+        const listItems = document.getElementsByTagName("li");
 
         // TODO: Set text color on every other list item to grey
         // TODO: Set text color of li with dbid = 1 to blue
 
     function changeListColor() {
-        for (var i = 0; i < listItems.length; i += 2) {
-            var dbId = listItems[i].getAttribute("data-dbid");
+        for (let i = 0; i < listItems.length; i += 2) {
+            let dbId = listItems[i].getAttribute("data-dbid");
             listItems[i].style.color = "grey";
 
             if (dbId === "1") {
@@ -72,7 +72,7 @@
 
         // TODO: Uncomment the next line and get all elements with class name sub-paragraph
 
-        var subParagraphs = document.getElementsByClassName("sub-paragraph");
+        const subParagraphs = document.getElementsByClassName("sub-paragraph");
 
         // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
 
@@ -81,10 +81,10 @@
     }
 
         // TODO: Add events to the buttons
-        var btnSetMainHeader = document.getElementById("setMainHeader");
-        var btnMakeBlue = document.getElementById("make-blue");
-        var btnChangeListColor = document.getElementById("change-list-color");
-        var btnComplete = document.getElementById("complete");
+        const btnSetMainHeader = document.getElementById("setMainHeader");
+        const btnMakeBlue = document.getElementById("make-blue");
+        const btnChangeListColor = document.getElementById("change-list-color");
+        const btnComplete = document.getElementById("complete");
 
         btnSetMainHeader.addEventListener("click", setMainHeader);
         btnMakeBlue.addEventListener("click", makeBlue);
