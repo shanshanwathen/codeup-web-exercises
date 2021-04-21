@@ -121,7 +121,7 @@ footer #social-media-links a {
     nav .nav-links {
         width: 100%;
         flex-direction: row;
-        justify-content: end;
+        justify-content: flex-end;
         margin: 1em 0;
     }
 
