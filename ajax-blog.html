@@ -44,89 +44,94 @@
 
 <script>
     function renderPost (post)  {
-        var contents = "";
-        contents += '<div class="card m-3"><div class="card-body p-0">';
-        contents += '<h5 class="card-title bg-info text-white p-3 m-0 rounded-top">' + post.title + '</h5>';
-        contents += '<p class="card-text m-1 ml-3"><small class="font-italic">' + post.categories + "</small></p>";
-        contents += '<p class="card-text m-3">' + post.content + "</p>";
-        contents += '<p class="card-text text-right pr-3"><small class="text-muted">' + post.date + '</small></p>';
-        contents += '</div></div>';
+        let contents =
+            `<div class="card m-3">
+                <div class="card-body p-0">
+                <h5 class="card-title bg-info text-white p-3 m-0 rounded-top">${post.title}</h5>
+                <p class="card-text m-1 ml-3"><small class="font-italic">${post.categories}</small></p>
+                <p class="card-text m-3">${post.content}</p>
+                <p class="card-text text-right pr-3"><small class="text-muted">${post.date}</small></p>
+                </div>
+            </div>`;
+
         $("#posts").append(contents);
     }
 
-    var newPost = {};
-    var postsRequest = $.ajax("data/blog.json");
-
-    function addPosts () {
-        postsRequest.done(function (data) {
-            data.data.forEach(renderPost);
-        });
-
-        postsRequest.fail(function () {
+    function displayPosts () {
+        fetch("data/blog.json")
+            .then(data => {return data.json()})
+            .then(postsObj => {
+                postsObj.posts.forEach(post => renderPost(post))
+            })
+            .catch(() => {
             $("#posts").html("Oops, something went wrong :(");
         });
     }
 
-    addPosts();
+    displayPosts();
 
-    $(document).ready(function () {
-        $("#title").keyup(function () {
-            newPost.title = $(this).val();
-        });
-        $("#categories").keyup(function () {
-            newPost.categories = $(this).val();
-        });
-        $("#content").keyup(function () {
-            newPost.content = $(this).val();
+    $(document).ready(() => {
+        // get newPost title, categories and content
+        let newPost = {};
+        $("#title").keyup((e) => newPost.title = $(e.target).val());
+        $("#categories").keyup((e) => {
+            newPost["categories"] = $(e.target).val().split(", ");;
+            console.log(newPost.categories);
+
+            console.log(newPost);
+
         });
 
-        $("#addPost").click(function(e) {
+        $("#content").keyup((e) => newPost.content = $(e.target).val());
+
+        $("#addPost").click((e) => {
             e.preventDefault();
-            var date = new Date().toString().split(" ");
-            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            months.forEach(function (month) {
+
+            let date = new Date().toString().split(" ");
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            months.forEach((month) => {
                 if (month.includes(date[1])) {
-                    newPost.date = month + " " + date[2] + ", " + date[3];
+                    newPost.date = `${month} ${date[2]}, ${date[3]}`;
                 }
+            });
+
+            console.log(newPost);
+
+            let addToJson = $.ajax("http://localhost:3000/posts", {
+                method: "POST",
+                data: {
+                    title: $("#title".val()),
+
+                }
+            });
+
+            console.log(addToJson);
+
+            addToJson.done(function (data) {
+                console.log(data);
+                $("#posts").html("");
+                displayPosts();
             });
 
             $('form').trigger("reset");
 
-            var addToJson = $.ajax("http://localhost:3000/data", {
-                method: "POST",
-                data: newPost
-            });
+            // const options = {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(newPost),
+            // };
+            //
+            // fetch("http://localhost:3000/posts", options)
+            //     .then(response => {return response.json()})
+            //     .then(results => {
+            //         displayPosts(results);
+            //     })
+            //     .catch(() => $("#posts").html("Oops, something went wrong :("));
 
-            addToJson.done(function (data) {
-                $("#posts").html("");
-                addPosts();
-            });
-        });
-
-        $("#deletePost").click(function (e) {
-            e.preventDefault();
-            postsRequest.done(function (data) {
-                var blogPosts = data.data;
-                var postsToDelete = [];
-                blogPosts.forEach(function (blogPost) {
-                    if (blogPost.id !== 1 && blogPost.id !== 2) {
-                        postsToDelete.push(blogPost);
-                    }
-                });
-
-                console.log(postsToDelete[0]);
-
-                var removeFromJson = $.ajax("http://localhost:3000/data", {
-                    method: "DELETE",
-
-                    data: postsToDelete[0]
-                });
-
-                removeFromJson.done(function (data) {
-                    $("#posts").html("");
-                    addPosts();
-                });
-            });
+            //     .then(response => fetch("/blog.json").then(response => (response.json())).then(response => displayPosts(response)))
+            //     .catch()
         });
     });
 

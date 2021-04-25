@@ -48,6 +48,10 @@ li.nav-item:nth-child(2) {
     width: 20rem;
 }
 
+.form-control {
+    height: 100%;
+}
+
 #place {
     max-width: 18rem;
 }

@@ -7,7 +7,6 @@ $(document).ready(function () {
     // https://api.openweathermap.org/data/2.5/forecast
 
     // Call 5 day / 3 hour forecast data
-
     function getWeatherIN5Days() {
         $.get("https://api.openweathermap.org/data/2.5/forecast",  {
             q: $("#current-city").html().split(": ")[1],
@@ -43,11 +42,9 @@ $(document).ready(function () {
         });
     }
 
+    // display current weather
     let currentWeather = "";
-    let defaultWeatherForecast = "";
     function getCurrentWeather(weather) {
-        console.log(currentWeather);
-
         if (currentWeather !== "") {
             currentWeather = "";
         }
@@ -68,6 +65,7 @@ $(document).ready(function () {
             </ul>`;
         $("li").addClass("list-group-item");
 
+        console.log(currentWeather);
         return currentWeather;
     }
 
@@ -77,17 +75,14 @@ $(document).ready(function () {
         units: "imperial"
     }).done(function (weather) {
         getWeatherIN5Days();
-        const displayCurrentWeather = new mapboxgl.Popup()
+
+        currentWeatherPopup = new mapboxgl.Popup()
             .setHTML(getCurrentWeather(weather));
 
-        new mapboxgl.Marker(el)
-            .setLngLat([-98.4951, 29.4246])
-            .setPopup(displayCurrentWeather)
+        currentWeatherMarker.setPopup(currentWeatherPopup)
             .addTo(map);
     });
 
-    defaultWeatherForecast = $(".card-deck").html();
-    console.log(defaultWeatherForecast);
 
     map.on('click', function (e) {
         // Use reverseGeocode to get the location address
@@ -107,21 +102,19 @@ $(document).ready(function () {
                 appid: openWeatherAppId,
                 units: "imperial"
             }).done(function (results) {
-                const displayCurrentWeather = new mapboxgl.Popup()
-                    .setHTML(getCurrentWeather(results))
-                    .addTo(map);
+                // Set new popup to display current weather in clicked location
+                currentWeatherPopup.setHTML(getCurrentWeather(results));
 
-                new mapboxgl.Marker(el)
-                    .setLngLat(e.lngLat)
-                    .setPopup(displayCurrentWeather)
-                    .addTo(map);
+                // Set new marker on clicked location
+                currentWeatherMarker.setLngLat(e.lngLat);
+
             });
         });
 
         map.flyTo({
             center: e.lngLat,
             zoom: 15,
-            speed: 0.5
+            speed: 0.8
         })
     });
 
@@ -135,24 +128,23 @@ $(document).ready(function () {
             $("#current-city").html("Current city: " + $("#place").val().charAt(0).toUpperCase() + $("#place").val().slice(1).toLowerCase());  // case insensitive
 
             $.get("https://api.openweathermap.org/data/2.5/weather", {
-                q: $("#place").val(),
+                q: $("#place").val().split(", ")[0],
                 appid: openWeatherAppId,
                 units: "imperial"
             }).done(function (weather) {
-                var currentWeather = new mapboxgl.Popup()
-                    .setHTML(getCurrentWeather(weather));
+                console.log(weather);
+                // Set new popup to display current weather in clicked location
+                currentWeatherPopup.setHTML(getCurrentWeather(weather));
 
-                new mapboxgl.Marker(el)
-                    .setLngLat(results)
-                    .setPopup(currentWeather)
-                    .addTo(map);
+                // Set new marker on clicked location
+                currentWeatherMarker.setLngLat(results);
             });
 
             // fly to the place searched
             map.flyTo({
                 center: results,
                 zoom: 15,
-                speed: 0.5
+                speed: 0.8
             });
 
             // Update the five-day forecast in new location
@@ -164,6 +156,7 @@ $(document).ready(function () {
 });
 
 
+
 mapboxgl.accessToken = mapboxToken;
 const map = new mapboxgl.Map({
     container: 'map', // container ID
@@ -172,13 +165,20 @@ const map = new mapboxgl.Map({
     zoom: 9 // starting zoom
 });
 
-// add custom icon to replace the default icon
+// add custom icon to replace the default icon for marker
 const el = document.createElement('div');
 el.className = 'marker';
 
+let currentWeatherPopup;
+// add marker to default city San Antonio
+let currentWeatherMarker = new mapboxgl.Marker(el)
+    .setLngLat([-98.4951, 29.4246])
+    .addTo(map);
+
+
 $(".card-title").addClass("rounded-top");
 
-$(".dark-mode").click(function () {
+$(".dark-mode").click(() => {
     $("body").toggleClass("dark-theme");
     $(".card-header").toggleClass("bg-dark");
     $(".card, li").toggleClass("dark-card");
@@ -194,3 +194,5 @@ $(".dark-mode").click(function () {
         map.setStyle("mapbox://styles/mapbox/streets-v11");
     }
 });
+
+$("#home").click(() => location.reload());

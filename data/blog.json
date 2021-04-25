@@ -1,5 +1,5 @@
 {
-  "data": [
+  "posts": [
     {
       "id": 1,
       "title": "My First Blog Post",
@@ -20,6 +20,16 @@
         "sugar"
       ],
       "date": "February 14, 2015"
+    },
+    {
+      "title": "hello",
+      "categories[]": [
+        "new",
+        "weather"
+      ],
+      "content": "hello",
+      "date": "April 19, 2021",
+      "id": 3
     }
   ]
 }
