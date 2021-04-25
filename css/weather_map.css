@@ -112,3 +112,8 @@ h6 {
     height: 30px;
     cursor: pointer;
 }
+
+/* -------------- map popup -------------- */
+.mapboxgl-popup-content > ul:nth-child(4) {
+    list-style: none;
+}

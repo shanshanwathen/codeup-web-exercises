@@ -49,7 +49,7 @@ $(document).ready(function () {
             currentWeather = "";
         }
 
-            // Display weather icon
+        // Display weather icon
         const iconcode = weather.weather[0].icon;
         const iconurl = `http://openweathermap.org/img/w/${iconcode}.png`;
 
@@ -57,13 +57,12 @@ $(document).ready(function () {
             `<h6>Current Weather</h6>
             <p class='text-center m-0'><strong>${weather.main.temp_max}/${weather.main.temp_min}</strong></p>
             <div class='text-center'><img id='weather-icon' src=${iconurl} alt='Weather icon'></div>
-            <ul class='list-group'>
+            <ul class='p-0'>
                 <li>Description: <strong>${weather.weather[0].description}</strong></li>
                 <li>Humidity: <strong>${weather.main.humidity}</strong></li>
                 <li>Wind: <strong>${weather.wind.speed}</strong></li>
                 <li>Pressure: <strong>${weather.main.pressure}</strong></li>
             </ul>`;
-        $("li").addClass("list-group-item");
 
         console.log(currentWeather);
         return currentWeather;
@@ -81,6 +80,14 @@ $(document).ready(function () {
 
         currentWeatherMarker.setPopup(currentWeatherPopup)
             .addTo(map);
+
+        // $(".dark-mode").click(() => {
+        //     if ($("body").hasClass("dark-theme")) {
+        //         $(".mapboxgl-popup-content").css("background-color", "#343a40");
+        //     } else {
+        //         $(".mapboxgl-popup-content").css("background-color", "white");
+        //     }
+        // });
     });
 
 
@@ -138,6 +145,14 @@ $(document).ready(function () {
 
                 // Set new marker on clicked location
                 currentWeatherMarker.setLngLat(results);
+
+                // $(".dark-mode").click(() => {
+                //     if ($("body").hasClass("dark-theme")) {
+                //         $(".mapboxgl-popup-content").css("background-color", "#343a40");
+                //     } else {
+                //         $(".mapboxgl-popup-content").css("background-color", "white");
+                //     }
+                // });
             });
 
             // fly to the place searched
@@ -181,17 +196,25 @@ $(".card-title").addClass("rounded-top");
 $(".dark-mode").click(() => {
     $("body").toggleClass("dark-theme");
     $(".card-header").toggleClass("bg-dark");
-    $(".card, li").toggleClass("dark-card");
+    $(".card, .list-group-item").toggleClass("dark-card");
     $(".h1, h5").toggleClass("dark");
     $("#place").toggleClass("btn-dark dark-input");
     $(".modal-header, .modal-footer").toggleClass("dark-theme");
     $(".modal-body").toggleClass("dark-card");
     $("#x").toggleClass("dark");
-    $(".mapboxgl-popup-content").toggleClass("bg-dark");
     if ($("body").hasClass("dark-theme")) {
         map.setStyle("mapbox://styles/mapbox/dark-v10");
+        // if ($(".mapboxgl-popup-content").html === undefined) {
+        //     $(".mapboxgl-popup-content").css({"background-color": "#343a40"});
+        // }
+
+        $(".mapboxgl-popup-content > ul > li").css("background-color", "#343a40");
     } else {
         map.setStyle("mapbox://styles/mapbox/streets-v11");
+        // if ($(".mapboxgl-popup-content").html === undefined) {
+        //     $(".mapboxgl-popup-content").css("background-color", "white");
+        // }
+        $(".mapboxgl-popup-content > ul > li").css("background-color", "white");
     }
 });
 
