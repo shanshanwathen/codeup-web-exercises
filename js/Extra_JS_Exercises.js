@@ -201,10 +201,19 @@ function getFirstLetter(strings) {
 //
 // 	***Please note that the order of object properties is uncertain and concatenating the object property values will be unpredictable. This is fine.***
 
-	```javascript
+	function objToObj(obj) {
+		let result = "";
+
+		for (let key in obj) {
+			result = result + obj[key];
+		}
+
+		return {all: result};
+	}
+
 	objToObj({foo: 'hello', bar:'world'}) // returns {all: 'helloworld'} or {all: 'worldhello'}
 	objToObj({a: 'codeup', b:'rocks'}) // returns {all: 'rockscodeup'} or {all: 'codeuprocks'}
-	```
+
 
 // 11. Create a function, `getStringDeets`, that takes in a string and returns an object with specific properties containing information about the string, namely:
 //
@@ -213,7 +222,15 @@ function getFirstLetter(strings) {
 //   - `length`- containing the length of characters of the string
 //   - `shoutedVersion` - containing an all caps version of the string
 
-	```javascript
+	function getStringDeets(string) {
+		return {
+			firstChar: string.charAt(0),
+			lastChar: string.charAt(string.length - 1),
+			length: string.length,
+			shoutedVersion: string.toUpperCase()
+		};
+	}
+
 	getStringDeets("apple"); // returns...
 	/* 
 	  {
@@ -223,12 +240,19 @@ function getFirstLetter(strings) {
 	    shoutedVersion: "APPLE"
 	  }
 	*/
-	```
+
 
 // 12. Create a function, `createUsersObject`, that takes in two arrays: the first array is an array of strings (usernames), the second is an array of numbers (user ages). The function should return an object with property names matching to the first array elements paired with property values matching the second  array elements. Assume both arrays are the same length.
 
-	```javascript
+	function createUsersObject(usernames, userAges) {
+		let result  = {};
+		for(let i = 0; i < usernames.length; i++) {
+			result[usernames[i]] = userAges[i];
+		}
+		return result;
+	}
+
 	var usernames = ['cindy', 'fred', 'cathy'];
 	var ages = [34, 22, 45];
 	createUsersObject(usernames, ages) // returns {cindy: 34, fred: 22, cathy: 45}
-	```
+
