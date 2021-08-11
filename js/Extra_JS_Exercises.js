@@ -45,25 +45,76 @@
 
 // 3. Create a function, `getOccurrences`, that that takes in two arguments, a string and a letter. The function will count the number of occurrences of the specified letter within the string and return that number. The function should recognize case for instances (e.g. 'M' does not equal 'm').
 
-	```javascript
+	// function getOccurrences(string,  letter) {
+	// 	let count = 0;
+	// 	let characters = string.split("");
+	// 	characters.forEach(function(character) {
+	// 		if (character === letter) {
+	// 			count++;
+	// 		}
+	// 	});
+	// 	return count;
+	// }
+
+	function getOccurrences(string, letter) {
+		let count = 0;
+
+		for (let i = 0; i < string.length; i++) {
+			if (string.charAt(i) === letter) { // string.charAt(i) is the same as string[i]
+				count++;
+			}
+		}
+
+		return count;
+	}
+
 	getOccurrences('hello', 'l'); // returns 2
 	getOccurrences('mississippi', 's'); // returns 4
 	getOccurrences('Bubble', 'B'); // returns 1
-	```
+
 
 // 4. Create a function, `getLongestString`, that takes in an array of strings and returns the longest string. If the two longest words are equal in length, return the last to appear in the array.
 
-	```javascript
+	function getLongestString(strings) {
+		let longest = strings[0];
+		strings.forEach(function(string) {
+			if (string.length >= longest.length) {
+				longest = string;
+			}
+		});
+
+		return longest;
+	}
+
 	getLongestString(['hello', 'hi', 'greetings']); // returns 'greetings'
 	getLongestString(['hello', 'world', '!' ]); // returns 'world'
-	```
+
 
 // 5. Create a function, `getFirstLetter`, that takes an array of strings and returns an array of the first letter of each string.
 
-	```javascript
+	// function getFirstLetter(strings) {
+	// 	let firstLetters = [];
+	// 	strings.forEach(function(string) {
+	// 		let firstLetter = string[0];
+	// 		firstLetters.push(firstLetter);
+	// 	});
+	//
+	// 	return firstLetters;
+	// }
+
+function getFirstLetter(strings) {
+	let firstLetters = [];
+
+	strings.forEach(function(string) {
+		firstLetters.push(string.slice(0,1));
+	});
+
+	return firstLetters;
+}
+
 	getFirstLetter(['hello', 'hi', 'greetings']); // returns ['h','h','g']
 	getFirstLetter(['hello', 'world', '!' ]); // returns ['h','w','!']
-	```
+
 
 // 6. Create a function, `arrayEndsWith`, that takes two arguments, an array and a shorter array, and returns a boolean whether or not the larger array ends with the same elements as the passed second array elements. The function should return true if the second array elements are at the end of the first array. Assume that neither array will be empty, contain only string, number, or boolean elements and that the length of the second array will always be shorter than the first.
 
