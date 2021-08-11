@@ -167,11 +167,35 @@ function getFirstLetter(strings) {
 
 // 9. Create a function, `objectToSum`, that takes in an object, and returns the sum of any number property values (numeric strings will not be added). Expect that no object property values will be NaN. If no number properties are present, return 0.
 
-	```javascript
+	// function objectToSum(object) {
+	// 	let sum = 0;
+	//
+	// 	const values = Object.values(object);
+	//
+	// 	values.forEach(function(value) {
+	// 		if (typeof(value) === "number") {
+	// 			sum += value;
+	// 		}
+	// 	});
+	//
+	// 	return sum;
+	// }
+
+	function objectToSum(object) {
+		let  sum = 0;
+
+		for (let key  in object) {
+			if (typeof(object[key]) === "number") {
+				sum += object[key];
+			}
+		}
+		return sum;
+	}
+
 	objectToSum({prop1: 'bob', prop2: true, prop3: 5}) // returns 5
 	objectToSum({a: '3', b: true, c: 5, d: 3}) // returns 8
 	objectToSum({foo: 'one', bar: 'two'}) // returns 0
-	```
+
 
 // 10. Create a function, `objToObj`, that takes in an object with only property values of a string type and returns another object with a single property called 'all' with a value of all input object properties values concatenated together.
 //
