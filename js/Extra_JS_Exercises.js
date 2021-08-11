@@ -118,28 +118,52 @@ function getFirstLetter(strings) {
 
 // 6. Create a function, `arrayEndsWith`, that takes two arguments, an array and a shorter array, and returns a boolean whether or not the larger array ends with the same elements as the passed second array elements. The function should return true if the second array elements are at the end of the first array. Assume that neither array will be empty, contain only string, number, or boolean elements and that the length of the second array will always be shorter than the first.
 
-	```javascript
+	function arrayEndsWith(array1, array2) {
+		let ends = array1.slice(array1.length - array2.length);
+
+		for (let i = 0; i < array2.length; i++) {
+			if (ends[i] !== array2[i]) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	arrayEndsWith(['hi', 'hello', 'world', true, 3, 5], [3, 5]); // returns true
 	arrayEndsWith(['hi', 'hello', 'world', true, 3, 5], [3, 9]); // returns false
 	arrayEndsWith(['hi', 'hmmm'], ['hmmm']); // returns true
 	arrayEndsWith([1, 2, 3], [2, 3]); // returns true
 	arrayEndsWith([1, 2, 3], [3, 2]); // returns false
-	```
+
 
 // 7. Create a function, `numsToObject`, that takes in three number inputs and returns them as property values `num1`, `num2`, and `num3` on an object.
 
-	```javascript
+	function numsToObject(number1, number2, number3) {
+		return {num1: number1, num2: number2, num3: number3};
+	}
+
 	numsToObject(4, 5, 6); // returns {num1: 4, num2: 5, num3: 6}
 	numsToObject(1, 2, 3); // returns {num1: 1, num2: 2, num3: 3}
 	numsToObject(0, 199, 34); // returns {num1: 0, num2: 199, num3: 34}
-	```
+
 
 // 8. Create a function, `removeNums`, that takes in an array of data types and returns an array of the same elements except for any number data types. Numeric strings do not count as a number but NaN does.
 
-	```javascript
+	function removeNums(dataTypes) {
+		let results = [];
+		dataTypes.forEach(function(type) {
+			if (typeof(type) !== "number") {
+				results.push(type);
+			}
+		});
+
+		return results;
+	}
+
 	removeNums(['a', true, null, [], {}, 4, '5', NaN]) // returns ['a', true, null, [], {}, '5']
 	removeNums(['a', 'b', 'c']) // returns ['a', true, null, [], {}, '5']
-	```
+
 
 // 9. Create a function, `objectToSum`, that takes in an object, and returns the sum of any number property values (numeric strings will not be added). Expect that no object property values will be NaN. If no number properties are present, return 0.
 
