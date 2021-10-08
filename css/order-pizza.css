@@ -26,6 +26,7 @@ p {
 
 .container #pizza-img {
     background-image: url("../img/pizza.png");
+    background-size: cover;
 }
 
 /* -------------- middle navbar styling -------------- */

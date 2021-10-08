@@ -64,7 +64,6 @@ $(document).ready(function () {
                 <li>Pressure: <strong>${weather.main.pressure}</strong></li>
             </ul>`;
 
-        console.log(currentWeather);
         return currentWeather;
     }
 
@@ -97,6 +96,8 @@ $(document).ready(function () {
             console.log(results)
             const cityArr = results.split(", ");
             const city = cityArr[cityArr.length - 3];
+
+            console.log(city);
 
             // Display current location city name on the search bar
             $("#current-city").html("Current city: " + city);
@@ -131,8 +132,13 @@ $(document).ready(function () {
         // Get coordinates using goecode & update current city and weather
         geocode($("#place").val(), mapboxToken).then(function (results) {
 
-            // Display current location city name on the navbar
-            $("#current-city").html("Current city: " + $("#place").val().charAt(0).toUpperCase() + $("#place").val().slice(1).toLowerCase());  // case insensitive
+            // Format the current location city and display current location city name on the navbar
+            let placeArr = $("#place").val().split(" ");
+            for (let i = 0; i < placeArr.length; i++) {
+                placeArr[i] = formatString(placeArr[i]);
+            }
+
+            $("#current-city").html("Current city: " + placeArr.join(" "));
 
             $.get("https://api.openweathermap.org/data/2.5/weather", {
                 q: $("#place").val().split(", ")[0],
@@ -171,6 +177,9 @@ $(document).ready(function () {
 });
 
 
+function formatString(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
 
 mapboxgl.accessToken = mapboxToken;
 const map = new mapboxgl.Map({
