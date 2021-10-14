@@ -95,11 +95,21 @@ const languages = users.reduce((languages,user) => {
 
 console.log(languages);
 
-const uniqueLanguages = languages.reduce((unique, language) => {
-        if (!unique.includes(language)) {
-            unique.push(language);
+// const uniqueLanguages = languages.reduce((unique, language) => {
+//         if (!unique.includes(language)) {
+//             unique.push(language);
+//         }
+//     return unique;
+// }, []);
+
+let uniqueLanguages = users.reduce((unique, user) => {
+    return user.languages.reduce((special, language) => {
+        if (special.includes(language)) {
+            return special;
+        } else {
+            return [...special, language];
         }
-    return unique;
+    }, unique);
 }, []);
 
 console.log(uniqueLanguages);
